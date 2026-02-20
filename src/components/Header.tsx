@@ -47,7 +47,7 @@ export default function Header() {
     >
       <div className="section-container h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-1">
+        <Link href="/" className="group flex items-center">
           <span
             className="font-syne font-extrabold text-xl tracking-tight text-[#fafaf9] group-hover:text-[#FF6B6B] transition-colors"
           >

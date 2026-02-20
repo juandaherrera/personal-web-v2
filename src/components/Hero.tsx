@@ -118,7 +118,7 @@ export default function Hero() {
                   alt={personalInfo.currentCompany}
                   width={80}
                   height={20}
-                  className="h-5 w-auto brightness-0 invert"
+                  className="h-5 w-auto brightness-0 invert transition-transform duration-200 hover:scale-110"
                 />
               </a>
             </motion.div>
@@ -161,14 +161,6 @@ export default function Hero() {
                   <path d="M12 5v14M5 12l7 7 7-7" />
                 </svg>
               </a>
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-[#1f1f28] text-[#71717a] font-figtree text-sm px-6 py-3 rounded-full hover:border-[#FF6B6B] hover:text-[#FF6B6B] transition-all"
-              >
-                GitHub
-              </a>
             </motion.div>
           </motion.div>
 
@@ -185,12 +177,12 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full border border-[#FF6B6B]/10 scale-125" />
               {/* Accent corner */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#FF6B6B]/10 rounded-2xl blur-xl" />
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-[#1f1f28]" style={{ position: "relative" }}>
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-[#1f1f28]" style={{ position: "relative" }}>
                 <Image
                   src={personalInfo.photo}
                   alt="Juan David Herrera"
                   fill
-                  sizes="(max-width: 768px) 256px, 320px"
+                  sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
                   className="object-cover object-top"
                   priority
                 />

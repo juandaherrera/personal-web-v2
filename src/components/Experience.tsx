@@ -20,7 +20,8 @@ function getDuration(startStr: string, endStr: string | null, isEn: boolean): st
   const end = endStr ? new Date(endStr + "T00:00:00") : new Date();
   const months =
     (end.getFullYear() - start.getFullYear()) * 12 +
-    (end.getMonth() - start.getMonth());
+    (end.getMonth() - start.getMonth()) +
+    1; // count start and end month inclusive (LinkedIn style)
   const years = Math.floor(months / 12);
   const rem = months % 12;
   const parts: string[] = [];
@@ -71,15 +72,15 @@ export default function Experience() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: ci * 0.1 }}
-                className="border border-[#1f1f28] rounded-2xl overflow-hidden bg-[#111117]/50 hover:border-[#2a2a36] transition-colors"
+                className="border border-[#1f1f28] rounded-2xl overflow-hidden bg-[#111117]/50 hover:border-[#FF6B6B]/25 hover:shadow-[0_0_40px_-10px_rgba(255,107,107,0.12)] transition-all duration-300"
               >
                 {/* Company header */}
-                <div className="flex items-center gap-4 p-6 border-b border-[#1f1f28]">
+                <div className="flex items-center gap-4 p-6 border-b border-[#1f1f28] bg-gradient-to-r from-[#FF6B6B]/[0.04] to-transparent">
                   <a
                     href={company.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden"
+                    className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden hover:border-[#FF6B6B]/30 transition-colors"
                   >
                     <Image
                       src={company.logo}
@@ -100,6 +101,11 @@ export default function Experience() {
                       {getDuration(companyStart, companyEnd, isEn)}
                     </p>
                   </div>
+                  {!companyEnd && (
+                    <span className="ml-auto font-mono text-[10px] px-2 py-0.5 rounded-full bg-green-400/10 border border-green-400/20 text-green-400 whitespace-nowrap">
+                      {isEn ? "Current" : "Actual"}
+                    </span>
+                  )}
                 </div>
 
                 {/* Jobs */}
@@ -111,7 +117,11 @@ export default function Experience() {
                       <div key={key}>
                         <button
                           onClick={() => setExpanded(isOpen ? null : key)}
-                          className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-[#18181f] transition-colors"
+                          className={`w-full flex items-center justify-between px-6 py-4 text-left transition-colors border-l-2 ${
+                            isOpen
+                              ? "bg-[#18181f] border-l-[#FF6B6B]/50"
+                              : "hover:bg-[#18181f] border-l-transparent"
+                          }`}
                         >
                           <div>
                             <p className="font-figtree font-semibold text-[#fafaf9] text-sm">
@@ -167,7 +177,7 @@ export default function Experience() {
                                     {job.technologies.map((tech) => (
                                       <span
                                         key={tech}
-                                        className="font-mono text-xs px-2.5 py-1 rounded-full bg-[#18181f] border border-[#2a2a36] text-[#71717a]"
+                                        className="font-mono text-xs px-2.5 py-1 rounded-full bg-[#FF6B6B]/8 border border-[#FF6B6B]/20 text-[#FF6B6B]/70 hover:bg-[#FF6B6B]/15 hover:border-[#FF6B6B]/50 hover:text-[#FF6B6B] transition-all duration-200 cursor-default select-none"
                                       >
                                         {tech}
                                       </span>

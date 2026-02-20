@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Syne, Figtree, JetBrains_Mono } from "next/font/google";
+import { Roboto_Condensed, Figtree, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-const syne = Syne({
+const robotoCondensed = Roboto_Condensed({
   variable: "--font-syne-var",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["300", "400", "700"],
 });
 
 const figtree = Figtree({
@@ -39,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${syne.variable} ${figtree.variable} ${jetbrains.variable}`}>
+    <html lang="es" className={`${robotoCondensed.variable} ${figtree.variable} ${jetbrains.variable}`}>
       <body>
         <LanguageProvider>{children}</LanguageProvider>
       </body>
