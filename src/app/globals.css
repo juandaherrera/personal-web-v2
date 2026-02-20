@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@theme {
+  --font-syne: var(--font-syne-var);
+  --font-figtree: var(--font-figtree-var);
+  --font-jetbrains: var(--font-jetbrains-var);
+
+  --color-bg: #09090b;
+  --color-surface: #111117;
+  --color-surface-2: #18181f;
+  --color-border-dark: #1f1f28;
+  --color-border-2: #2a2a36;
+  --color-text-primary: #fafaf9;
+  --color-muted: #71717a;
+  --color-accent: #FF6B6B;
+  --color-accent-2: #FFB3B3;
+
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 30s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+}
+
+:root {
+  --font-syne-var: "Syne", sans-serif;
+  --font-figtree-var: "Figtree", sans-serif;
+  --font-jetbrains-var: "JetBrains Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #09090b;
+  color: #fafaf9;
+  font-family: var(--font-figtree-var);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(255, 107, 107, 0.3);
+  color: #fafaf9;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #2a2a36; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #71717a; }
+
+/* Ghost section number */
+.section-number {
+  font-family: var(--font-syne-var);
+  font-size: clamp(6rem, 15vw, 14rem);
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 107, 107, 0.08);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFB3B3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Font utility classes */
+.font-syne { font-family: var(--font-syne-var) !important; }
+.font-figtree { font-family: var(--font-figtree-var) !important; }
+.font-mono { font-family: var(--font-jetbrains-var) !important; }
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid #FF6B6B;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Animate marquee */
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 30s linear infinite;
+}
+
+/* Container utility — unlayered to win over any CSS layer reset in Tailwind v4 */
+.section-container {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 639px) {
+  .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Section vertical padding — unlayered for robustness */
+.section-py {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.section-py-lg {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+@media (max-width: 767px) {
+  .section-py { padding-top: 4rem; padding-bottom: 4rem; }
+  .section-py-lg { padding-top: 5rem; padding-bottom: 5rem; }
+}
