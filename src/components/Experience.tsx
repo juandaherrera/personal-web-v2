@@ -7,13 +7,14 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
+const MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_ES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+
 function formatDate(dateStr: string | null, isEn: boolean): string {
   if (!dateStr) return isEn ? "Present" : "Actualidad";
   const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString(isEn ? "en-US" : "es-CO", {
-    month: "short",
-    year: "numeric",
-  });
+  const month = isEn ? MONTHS_EN[d.getMonth()] : MONTHS_ES[d.getMonth()];
+  return `${month} ${d.getFullYear()}`;
 }
 
 function getDuration(startStr: string, endStr: string | null, isEn: boolean): string {
@@ -157,7 +158,7 @@ export default function Experience() {
                               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                               className="overflow-hidden"
                             >
-                              <div className="px-6 pb-6 space-y-6">
+                              <div className="px-6 pt-4 pb-6 space-y-6">
                                 <p className="font-figtree text-[#71717a] text-base leading-relaxed">
                                   {isEn ? job.descriptionEn : job.description}
                                 </p>

@@ -2,15 +2,36 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { courseSchools, totalCourses } from "@/data/content";
+import { TechBadge } from "@/components/TechBadge";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
+
+const INITIAL_VISIBLE = 5;
+
+const MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_ES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+
+function formatCourseDate(dateStr: string, isEn: boolean): string {
+  const d = new Date(dateStr + "T00:00:00");
+  const month = isEn ? MONTHS_EN[d.getMonth()] : MONTHS_ES[d.getMonth()];
+  return `${month} ${d.getFullYear()}`;
+}
 
 export default function Courses() {
   const { isEn } = useLanguage();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState<Set<string>>(new Set());
+
+  function toggleShowAll(name: string) {
+    setShowAll((prev) => {
+      const next = new Set(prev);
+      next.has(name) ? next.delete(name) : next.add(name);
+      return next;
+    });
+  }
 
   return (
     <section className="relative section-py-lg overflow-hidden" ref={ref}>
@@ -43,94 +64,147 @@ export default function Courses() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-4">
-          {courseSchools.map((school, i) => (
-            <motion.div
-              key={school.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="border border-[#1f1f28] rounded-2xl bg-[#111117] overflow-hidden"
-            >
-              <button
-                onClick={() => setExpanded(expanded === school.name ? null : school.name)}
-                className="w-full flex items-center gap-4 px-6 py-5 hover:bg-[#18181f] transition-colors"
+        <div className="space-y-4">
+          {courseSchools.map((school, i) => {
+            const isOpen = expanded === school.name;
+            const isShowingAll = showAll.has(school.name);
+            const hasMore = school.courses.length > INITIAL_VISIBLE;
+            const visibleCourses = isShowingAll
+              ? school.courses
+              : school.courses.slice(0, INITIAL_VISIBLE);
+            const hiddenCount = school.courses.length - INITIAL_VISIBLE;
+
+            return (
+              <motion.div
+                key={school.name}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="border border-[#1f1f28] rounded-2xl overflow-hidden bg-[#111117]/50 hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden">
-                  <Image
-                    src={school.logo}
-                    alt={school.name}
-                    width={24}
-                    height={24}
-                    className="w-6 h-6 object-contain brightness-0 invert"
-                  />
-                </div>
-                <div className="flex-1 text-left">
-                  <p className="font-syne font-bold text-[#fafaf9] text-base">
-                    {school.name}
-                  </p>
-                  <p className="font-mono text-sm text-[#71717a]">
-                    {school.count} {isEn ? (school.count === 1 ? "course" : "courses") : (school.count === 1 ? "curso" : "cursos")}
-                  </p>
-                </div>
-                {/* Progress-like bar */}
-                <div className="flex-shrink-0 w-24 h-1.5 bg-[#1f1f28] rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-gradient-to-r from-[#FF6B6B] to-[#FFB3B3] rounded-full"
-                    style={{
-                      width: `${Math.min((school.count / totalCourses) * 100 * 2, 100)}%`,
-                    }}
-                  />
-                </div>
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className={`flex-shrink-0 text-[#71717a] transition-transform ${
-                    expanded === school.name ? "rotate-180" : ""
+                {/* Platform header */}
+                <button
+                  onClick={() => setExpanded(isOpen ? null : school.name)}
+                  className={`w-full flex items-center gap-4 px-6 py-5 text-left transition-colors ${
+                    isOpen ? "bg-[#18181f]" : "hover:bg-[#18181f]"
                   }`}
                 >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-
-              <AnimatePresence>
-                {expanded === school.name && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={school.logo}
+                      alt={school.name}
+                      width={28}
+                      height={28}
+                      className="w-7 h-7 object-contain brightness-0 invert"
+                    />
+                  </div>
+                  <p className="flex-1 font-syne font-bold text-xl text-[#fafaf9]">
+                    {school.name}
+                  </p>
+                  <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-[#1f1f28] text-[#71717a]">
+                    {school.courses.length}{" "}
+                    {isEn
+                      ? school.courses.length === 1 ? "course" : "courses"
+                      : school.courses.length === 1 ? "curso" : "cursos"}
+                  </span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className={`flex-shrink-0 text-[#71717a] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   >
-                    <div className="px-6 pb-5 border-t border-[#1f1f28] pt-4">
-                      <a
-                        href={school.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 font-mono text-xs text-[#FF6B6B] hover:underline"
-                      >
-                        {isEn ? "View profile" : "Ver perfil"}
-                        <svg
-                          width="11"
-                          height="11"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                        </svg>
-                      </a>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+
+                {/* Course list */}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="border-t border-[#1f1f28]">
+                        {visibleCourses.map((course, ci) => (
+                          <div
+                            key={ci}
+                            className="px-6 py-4 border-b border-[#1f1f28] last:border-b-0"
+                          >
+                            {/* Row 1: name + date */}
+                            <div className="flex items-baseline justify-between gap-4">
+                              <p className="font-figtree text-base text-[#fafaf9] flex-1 min-w-0">
+                                {isEn ? course.nameEn : course.nameEs}
+                              </p>
+                              <span className="font-mono text-sm text-[#71717a] flex-shrink-0">
+                                {formatCourseDate(course.issueDate, isEn)}
+                              </span>
+                            </div>
+                            {/* Row 2: badges (left) + credential (right) */}
+                            <div className="flex items-center justify-between gap-4 mt-2">
+                              <div className="flex flex-wrap gap-1.5 flex-1 min-w-0">
+                                {course.technologies.map((tech) => (
+                                  <TechBadge key={tech} label={tech} />
+                                ))}
+                              </div>
+                              <a
+                                href={course.credentialUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded-full border border-[#FF6B6B]/25 text-[#FF6B6B]/70 bg-[#FF6B6B]/5 hover:bg-[#FF6B6B]/15 hover:border-[#FF6B6B]/50 hover:text-[#FF6B6B] transition-all duration-200 whitespace-nowrap flex-shrink-0"
+                              >
+                                {isEn ? "Credential" : "Credencial"}
+                                <svg
+                                  width="10"
+                                  height="10"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2.5"
+                                >
+                                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                              </a>
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* Show more / show less */}
+                        {hasMore && (
+                          <button
+                            onClick={() => toggleShowAll(school.name)}
+                            className="w-full flex items-center justify-center gap-2 py-3.5 font-mono text-sm text-[#71717a] hover:text-[#fafaf9] hover:bg-[#18181f] transition-all duration-200 border-t border-[#1f1f28]"
+                          >
+                            {isShowingAll ? (
+                              <>
+                                {isEn ? "Show less" : "Ver menos"}
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <path d="M18 15l-6-6-6 6" />
+                                </svg>
+                              </>
+                            ) : (
+                              <>
+                                {isEn ? `Show ${hiddenCount} more` : `Ver ${hiddenCount} más`}
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <path d="M6 9l6 6 6-6" />
+                                </svg>
+                              </>
+                            )}
+                          </button>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

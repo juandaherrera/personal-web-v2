@@ -310,18 +310,89 @@ export const education: Education[] = [
   },
 ];
 
+export interface Course {
+  nameEn: string;
+  nameEs: string;
+  issueDate: string;
+  credentialUrl: string;
+  technologies: string[];
+}
+
 export interface CourseSchool {
   name: string;
   logo: string;
   url: string;
-  count: number;
+  courses: Course[];
 }
 
 export const courseSchools: CourseSchool[] = [
-  { name: "Platzi", logo: "/icons/platzi.svg", url: "https://platzi.com/", count: 33 },
-  { name: "Udemy", logo: "/icons/udemy.svg", url: "https://www.udemy.com/", count: 3 },
-  { name: "Google", logo: "/icons/google.svg", url: "https://grow.google/", count: 2 },
-  { name: "Coursera", logo: "/icons/coursera.svg", url: "https://www.coursera.org/", count: 1 },
+  {
+    name: "Platzi",
+    logo: "/icons/platzi.svg",
+    url: "https://platzi.com/",
+    courses: [
+      { nameEn: "Work Environment for Data and AI", nameEs: "Entorno de Trabajo para Data e IA", issueDate: "2024-05-03", credentialUrl: "https://platzi.com/p/david.parra/learning-path/13490-datos-fundamentos-tecnicos/diploma/detalle/", technologies: ["Git", "CookieCutter", "Python", "Anaconda", "Docker"] },
+      { nameEn: "Bash Shell Programming Course", nameEs: "Curso de Programación en Bash Shell", issueDate: "2024-04-28", credentialUrl: "https://platzi.com/p/david.parra/curso/1468-bash-shell/diploma/detalle/", technologies: ["Bash"] },
+      { nameEn: "Handling Missing Data: Imputation Course", nameEs: "Curso de Manejo de Datos Faltantes: Imputación", issueDate: "2024-04-10", credentialUrl: "https://platzi.com/p/david.parra/curso/4197-datos-faltantes-imputacion/diploma/detalle/", technologies: ["Python", "Statistics"] },
+      { nameEn: "Exploratory Data Analysis Course", nameEs: "Curso de Análisis Exploratorio de Datos", issueDate: "2024-03-29", credentialUrl: "https://platzi.com/p/david.parra/curso/3568-analisis-exploratorio-datos/diploma/detalle/", technologies: ["Python", "Statistics"] },
+      { nameEn: "Mathematics for Data Science: Descriptive Statistics", nameEs: "Curso de Matemáticas para Data Science: Estadística Descriptiva", issueDate: "2024-03-10", credentialUrl: "https://platzi.com/p/david.parra/curso/2353-estadistica-descriptiva/diploma/detalle/", technologies: ["Python", "Statistics"] },
+      { nameEn: "Data Visualization with Matplotlib and Seaborn", nameEs: "Curso de Visualización de Datos con Matplotlib y Seaborn", issueDate: "2024-03-07", credentialUrl: "https://platzi.com/p/david.parra/curso/2913-matplotlib-seaborn/diploma/detalle/", technologies: ["Python"] },
+      { nameEn: "PostgreSQL for Data Science", nameEs: "Curso de PostgreSQL Aplicado a Ciencia de Datos", issueDate: "2024-02-13", credentialUrl: "https://platzi.com/p/david.parra/curso/1780-postgresql-datos/diploma/detalle/", technologies: ["SQL", "PostgreSQL"] },
+      { nameEn: "Handling Missing Data: Detection and Exploration", nameEs: "Curso de Manejo de Datos Faltantes: Detección y Exploración", issueDate: "2024-02-02", credentialUrl: "https://platzi.com/p/david.parra/curso/4196-datos-faltantes/diploma/detalle/", technologies: ["Python", "Pandas"] },
+      { nameEn: "Principles of Data Visualization for Business Intelligence", nameEs: "Curso de Principios de Visualización de Datos para Business Intelligence", issueDate: "2024-02-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2195-visualizacion-datos/diploma/detalle/", technologies: ["Power BI"] },
+      { nameEn: "FastAPI: Database, Modularization, and Deployment", nameEs: "Curso de FastAPI: Base de Datos, Modularización y Deploy a Producción", issueDate: "2023-12-01", credentialUrl: "https://platzi.com/p/david.parra/curso/5355-fastapi-modularizacion-datos/diploma/detalle/", technologies: ["Python", "FastAPI"] },
+      { nameEn: "FastAPI: Introduction, Operations, Validation, and Authentication", nameEs: "Curso de FastAPI: Introducción, Operaciones, Validaciones y Autenticación", issueDate: "2023-12-01", credentialUrl: "https://platzi.com/p/david.parra/curso/5354-fastapi/diploma/detalle/", technologies: ["Python", "FastAPI"] },
+      { nameEn: "AWS Practical Course: Compute with EC2", nameEs: "Curso Práctico de AWS: Cómputo con EC2", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/3073-aws-ec2/diploma/detalle/", technologies: ["AWS", "EC2"] },
+      { nameEn: "AWS Practical Course: IAM Roles and Security", nameEs: "Curso Práctico de AWS: Roles y Seguridad con IAM", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/3044-aws-iam/diploma/detalle/", technologies: ["AWS", "IAM"] },
+      { nameEn: "Practical AWS Storage Course", nameEs: "Curso Práctico de Storage en AWS", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/1424-storage-aws/diploma/detalle/", technologies: ["AWS", "S3"] },
+      { nameEn: "Data Warehousing and OLAP Modeling Course", nameEs: "Curso de Data Warehousing y Modelado OLAP", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/7034-data-warehouse/diploma/detalle/", technologies: ["AWS", "SQL"] },
+      { nameEn: "Docker Course", nameEs: "Curso de Docker", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2066-docker/diploma/detalle/", technologies: ["Docker"] },
+      { nameEn: "ETL Fundamentals with Python and Pentaho", nameEs: "Curso de Fundamentos de ETL con Python y Pentaho", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/6211-fundamentos-etl/diploma/detalle/", technologies: ["AWS", "Python", "SQL"] },
+      { nameEn: "Introduction to AWS: Compute, Storage, and Databases", nameEs: "Curso de Introducción a AWS: Cómputo, Almacenamiento y Bases de Datos", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2732-aws-computo/diploma/detalle/", technologies: ["AWS"] },
+      { nameEn: "Introduction to AWS: Cloud Computing Fundamentals", nameEs: "Curso de Introducción a AWS: Fundamentos de Cloud Computing", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2731-aws-fundamentos/diploma/detalle/", technologies: ["AWS"] },
+      { nameEn: "Introduction to AWS: Networks, Governance, and Machine Learning", nameEs: "Curso de Introducción a AWS: Redes, Gobernanza y Machine Learning", issueDate: "2023-11-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2733-aws-redes/diploma/detalle/", technologies: ["AWS"] },
+      { nameEn: "Professional Work Environment Setup for Data Science", nameEs: "Curso de Configuración Profesional de Entorno de Trabajo para Ciencia de Datos", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2435-entorno-ciencia-datos/diploma/detalle/", technologies: ["CookieCutter", "Python", "Jinja", "Git"] },
+      { nameEn: "Data Science Work Environment with Jupyter Notebooks and Anaconda", nameEs: "Curso de Entorno de Trabajo para Ciencia de Datos con Jupyter Notebooks y Anaconda", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2434-jupyter-notebook/diploma/detalle/", technologies: ["Anaconda", "Git"] },
+      { nameEn: "Database Fundamentals", nameEs: "Curso de Fundamentos de Bases de Datos", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/1566-bd/diploma/detalle/", technologies: ["MySQL", "SQL"] },
+      { nameEn: "Data Engineering Fundamentals", nameEs: "Curso de Fundamentos de Ingeniería de Datos", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/5514-course/diploma/detalle/", technologies: ["ETL"] },
+      { nameEn: "Introduction to MongoDB", nameEs: "Curso de Introducción a MongoDB", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/4987-mongodb/diploma/detalle/", technologies: ["MongoDB", "Docker"] },
+      { nameEn: "MongoDB Data Modeling", nameEs: "Curso de Modelado de Datos en MongoDB", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/5356-mongodb-modelado/diploma/detalle/", technologies: ["MongoDB"] },
+      { nameEn: "Introduction to the Terminal and Command Line", nameEs: "Curso de Introducción a la Terminal y Línea de Comandos", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2292-course/diploma/detalle/", technologies: ["Bash"] },
+      { nameEn: "Data Manipulation and Transformation with Pandas and NumPy", nameEs: "Curso de Manipulación y Transformación de Datos con Pandas y NumPy", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/2912-pandas-numpy/diploma/detalle/", technologies: ["Python", "Pandas", "NumPy"] },
+      { nameEn: "PostgreSQL Course", nameEs: "Curso de PostgreSQL", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/1480-postgresql/diploma/detalle/", technologies: ["PostgreSQL", "SQL"] },
+      { nameEn: "Python: Comprehensions, Functions, and Error Handling", nameEs: "Curso de Python: Comprehensions, Funciones y Manejo de Errores", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/4260-course/diploma/detalle/", technologies: ["Python"] },
+      { nameEn: "Python: PIP and Virtual Environments", nameEs: "Curso de Python: PIP y Entornos Virtuales", issueDate: "2023-10-01", credentialUrl: "https://platzi.com/p/david.parra/curso/4261-course/diploma/detalle/", technologies: ["Python", "PIP", "Docker"] },
+      { nameEn: "Prompt Engineering with ChatGPT", nameEs: "Curso de Prompt Engineering con ChatGPT", issueDate: "2023-04-01", credentialUrl: "https://platzi.com/p/david.parra/curso/7296-chatgpt/diploma/detalle/", technologies: ["Prompt Engineering"] },
+      { nameEn: "Professional Git and GitHub", nameEs: "Curso Profesional de Git y GitHub", issueDate: "2023-03-01", credentialUrl: "https://platzi.com/p/david.parra/curso/1557-git-github/diploma/detalle/", technologies: ["Git", "GitHub"] },
+    ],
+  },
+  {
+    name: "Udemy",
+    logo: "/icons/udemy.svg",
+    url: "https://www.udemy.com/",
+    courses: [
+      { nameEn: "Redis 5 Course", nameEs: "Curso de Redis 5", issueDate: "2024-09-05", credentialUrl: "https://rappi.udemy.com/certificate/UC-665c6c28-2672-4504-8fb1-d4c7e07c86e8/", technologies: ["Redis"] },
+      { nameEn: "Complete Microsoft Azure Fundamentals AZ-900", nameEs: "Curso Completo de Microsoft Azure Fundamentales AZ-900", issueDate: "2024-01-01", credentialUrl: "https://www.udemy.com/certificate/UC-d9659f63-61a8-4820-9cfd-29378648af9a/", technologies: ["Azure"] },
+      { nameEn: "Advanced Django Course", nameEs: "Curso de Django Avanzado", issueDate: "2021-04-01", credentialUrl: "https://www.udemy.com/certificate/UC-a8f432a4-17f6-4e6a-b801-7b1bc2170622/", technologies: ["Python", "Django", "HTML", "CSS", "SQL", "Git"] },
+    ],
+  },
+  {
+    name: "Google",
+    logo: "/icons/google.svg",
+    url: "https://grow.google/intl/es/courses-and-tools/",
+    courses: [
+      { nameEn: "Advanced Google Analytics", nameEs: "Curso avanzado de Google Analytics", issueDate: "2019-07-15", credentialUrl: "https://analytics.google.com/analytics/academy/certificate/R33dVGyQSmaJSqbbW_nS_w", technologies: ["Google Analytics"] },
+      { nameEn: "Google Analytics for Beginners", nameEs: "Google Analytics para Principiantes", issueDate: "2019-07-01", credentialUrl: "https://analytics.google.com/analytics/academy/certificate/RbhZX3hCR5iHhNvzdYwcrg", technologies: ["Google Analytics"] },
+    ],
+  },
+  {
+    name: "Coursera",
+    logo: "/icons/coursera.svg",
+    url: "https://www.coursera.org/",
+    courses: [
+      { nameEn: "Complete Spark with Databricks (Big Data)", nameEs: "Curso Completo de Spark con Databricks (Big Data)", issueDate: "2024-01-01", credentialUrl: "https://www.coursera.org/account/accomplishments/records/RQG5CWHQTY6G", technologies: ["Azure Databricks", "Python", "Apache Spark", "SQL"] },
+    ],
+  },
 ];
 
-export const totalCourses = courseSchools.reduce((acc, s) => acc + s.count, 0);
+export const totalCourses = courseSchools.reduce((acc, s) => acc + s.courses.length, 0);
