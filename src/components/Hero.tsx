@@ -81,7 +81,7 @@ export default function Hero() {
           >
             <motion.p
               variants={item}
-              className="font-mono text-sm text-[#71717a] mb-6 flex items-center gap-2"
+              className="font-mono text-base text-[#71717a] mb-6 flex items-center gap-2"
             >
               <span className="w-8 h-px bg-[#FF6B6B]" />
               {isEn ? "Hello 👋🏻, I'm" : "Hola 👋🏻, soy"}
@@ -104,7 +104,7 @@ export default function Hero() {
               variants={item}
               className="flex items-center gap-2 mb-8"
             >
-              <span className="font-figtree text-[#71717a] text-sm">
+              <span className="font-figtree text-[#71717a] text-base">
                 {isEn ? "Currently at" : "Actualmente en"}
               </span>
               <a

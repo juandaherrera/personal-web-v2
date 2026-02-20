@@ -66,7 +66,7 @@ export default function About() {
                   <span className="font-syne font-extrabold text-3xl text-[#FF6B6B]">
                     {stat.value}
                   </span>
-                  <span className="font-figtree text-sm text-[#71717a]">
+                  <span className="font-figtree text-base text-[#71717a]">
                     {stat.label}
                   </span>
                 </div>

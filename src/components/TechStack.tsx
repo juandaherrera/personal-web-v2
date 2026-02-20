@@ -19,9 +19,7 @@ function TechItem({ name, icon, iconUrl, url }: { name: string; icon: string; ic
         alt={name}
         width={20}
         height={20}
-        className={`w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity ${
-          iconUrl ? "brightness-0 invert sepia saturate-[3] hue-rotate-[320deg]" : ""
-        }`}
+        className="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity"
         onError={(e) => {
           (e.target as HTMLImageElement).style.display = "none";
         }}

@@ -72,7 +72,7 @@ export default function Footer() {
           <div className="w-16 h-px bg-[#FF6B6B]/30 mx-auto mb-8" />
 
           {/* Copyright */}
-          <p className="font-figtree text-sm text-[#71717a]">
+          <p className="font-figtree text-base text-[#71717a]">
             © {year}{" "}
             <a
               href={personalInfo.repoUrl}
@@ -87,12 +87,12 @@ export default function Footer() {
               href={personalInfo.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs hover:text-[#FF6B6B] transition-colors"
+              className="font-mono text-sm hover:text-[#FF6B6B] transition-colors"
             >
               {personalInfo.version}
             </a>
           </p>
-          <p className="font-figtree text-xs text-[#71717a]/60 mt-2">
+          <p className="font-figtree text-sm text-[#71717a]/60 mt-2">
             {isEn
               ? `Made with 🧡 from ${personalInfo.location}`
               : `Hecho con 🧡 desde ${personalInfo.location}`}

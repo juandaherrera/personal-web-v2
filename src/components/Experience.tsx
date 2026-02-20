@@ -157,7 +157,7 @@ export default function Experience() {
                               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                               className="overflow-hidden"
                             >
-                              <div className="px-6 pb-6 space-y-4">
+                              <div className="px-6 pb-6 space-y-6">
                                 <p className="font-figtree text-[#71717a] text-base leading-relaxed">
                                   {isEn ? job.descriptionEn : job.description}
                                 </p>
