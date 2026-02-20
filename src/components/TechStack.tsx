@@ -66,7 +66,7 @@ export default function TechStack() {
       {/* Marquee rows */}
       <div className="space-y-4">
         {/* Row 1 — left */}
-        <Marquee speed={40} gradient gradientColor="#09090b" gradientWidth={96} pauseOnHover>
+        <Marquee autoFill speed={40} gradient gradientColor="#09090b" gradientWidth={96} pauseOnHover>
           {row1.map((tech, i) => (
             <div key={i} className="px-2">
               <TechItem {...tech} />
@@ -75,7 +75,7 @@ export default function TechStack() {
         </Marquee>
 
         {/* Row 2 — right */}
-        <Marquee speed={40} direction="right" gradient gradientColor="#09090b" gradientWidth={96} pauseOnHover>
+        <Marquee autoFill speed={40} direction="right" gradient gradientColor="#09090b" gradientWidth={96} pauseOnHover>
           {row2.map((tech, i) => (
             <div key={i} className="px-2">
               <TechItem {...tech} />

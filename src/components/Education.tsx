@@ -48,10 +48,10 @@ export default function Education() {
                     />
                   </div>
                   <div>
-                    <h3 className="font-syne font-bold text-base text-[#fafaf9]">
+                    <h3 className="font-syne font-bold text-lg text-[#fafaf9]">
                       {isEn ? edu.degreeEn : edu.degree}
                     </h3>
-                    <p className="font-figtree text-sm text-[#71717a]">
+                    <p className="font-figtree text-base text-[#71717a]">
                       {edu.institution}
                     </p>
                     <p className="font-mono text-xs text-[#FF6B6B]/70 mt-0.5">
@@ -80,7 +80,7 @@ export default function Education() {
               {certifications.map((cert) => (
                 <div
                   key={cert.title}
-                  className="flex items-center gap-4 p-5 rounded-2xl border border-[#1f1f28] bg-[#111117] hover:border-[#FF6B6B]/30 transition-colors group"
+                  className="flex items-center gap-4 p-5 rounded-2xl border border-[#1f1f28] bg-[#111117] hover:border-[#2a2a36] hover:-translate-y-1.5 hover:shadow-[0_10px_28px_rgba(0,0,0,0.4)] transition-all duration-300 group"
                 >
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden">
                     <Image
@@ -92,10 +92,10 @@ export default function Education() {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-syne font-bold text-sm text-[#fafaf9] truncate group-hover:text-[#FF6B6B] transition-colors">
+                    <h3 className="font-syne font-bold text-base text-[#fafaf9] truncate">
                       {cert.title}
                     </h3>
-                    <p className="font-figtree text-xs text-[#71717a]">
+                    <p className="font-figtree text-sm text-[#71717a]">
                       {cert.institute} · {cert.year}
                     </p>
                   </div>

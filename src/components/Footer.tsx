@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { personalInfo } from "@/data/content";
+import { LogoMark } from "@/components/LogoMark";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -31,11 +32,8 @@ export default function Footer() {
           className="text-center"
         >
           {/* Logo */}
-          <div className="flex justify-center mb-8">
-            <span className="font-syne font-extrabold text-3xl">
-              <span className="text-[#fafaf9]">juanda</span>
-              <span className="text-[#FF6B6B]">herrera</span>
-            </span>
+          <div className="group inline-flex justify-center mb-8 cursor-default">
+            <LogoMark size="text-3xl" />
           </div>
 
           {/* Social links */}

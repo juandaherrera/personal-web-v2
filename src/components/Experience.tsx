@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { experience } from "@/data/content";
+import { TechBadge } from "@/components/TechBadge";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
@@ -72,10 +73,10 @@ export default function Experience() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: ci * 0.1 }}
-                className="border border-[#1f1f28] rounded-2xl overflow-hidden bg-[#111117]/50 hover:border-[#FF6B6B]/25 hover:shadow-[0_0_40px_-10px_rgba(255,107,107,0.12)] transition-all duration-300"
+                className="border border-[#1f1f28] rounded-2xl overflow-hidden bg-[#111117]/50 hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
               >
                 {/* Company header */}
-                <div className="flex items-center gap-4 p-6 border-b border-[#1f1f28] bg-gradient-to-r from-[#FF6B6B]/[0.04] to-transparent">
+                <div className="flex items-center gap-4 p-6 border-b border-[#1f1f28]">
                   <a
                     href={company.url}
                     target="_blank"
@@ -91,10 +92,10 @@ export default function Experience() {
                     />
                   </a>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-syne font-bold text-lg text-[#fafaf9]">
+                    <h3 className="font-syne font-bold text-xl text-[#fafaf9]">
                       {company.name}
                     </h3>
-                    <p className="font-mono text-xs text-[#71717a]">
+                    <p className="font-mono text-sm text-[#71717a]">
                       {formatDate(companyStart, isEn)} →{" "}
                       {formatDate(companyEnd, isEn)}{" "}
                       <span className="text-[#2a2a36]">·</span>{" "}
@@ -124,10 +125,10 @@ export default function Experience() {
                           }`}
                         >
                           <div>
-                            <p className="font-figtree font-semibold text-[#fafaf9] text-sm">
+                            <p className="font-figtree font-semibold text-[#fafaf9] text-base">
                               {isEn ? job.titleEn : job.title}
                             </p>
-                            <p className="font-mono text-xs text-[#71717a] mt-0.5">
+                            <p className="font-mono text-sm text-[#71717a] mt-0.5">
                               {formatDate(job.startDate, isEn)} →{" "}
                               {formatDate(job.endDate, isEn)}{" "}
                               <span className="text-[#2a2a36]">·</span>{" "}
@@ -157,7 +158,7 @@ export default function Experience() {
                               className="overflow-hidden"
                             >
                               <div className="px-6 pb-6 space-y-4">
-                                <p className="font-figtree text-[#71717a] text-sm leading-relaxed">
+                                <p className="font-figtree text-[#71717a] text-base leading-relaxed">
                                   {isEn ? job.descriptionEn : job.description}
                                 </p>
 
@@ -166,7 +167,7 @@ export default function Experience() {
                                     <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-2">
                                       {isEn ? "Highlights" : "Logros"}
                                     </p>
-                                    <p className="font-figtree text-sm text-[#fafaf9]/80 leading-relaxed">
+                                    <p className="font-figtree text-base text-[#fafaf9]/80 leading-relaxed">
                                       {isEn ? job.achievementsEn : job.achievements}
                                     </p>
                                   </div>
@@ -175,12 +176,7 @@ export default function Experience() {
                                 {job.technologies.length > 0 && (
                                   <div className="flex flex-wrap gap-2">
                                     {job.technologies.map((tech) => (
-                                      <span
-                                        key={tech}
-                                        className="font-mono text-xs px-2.5 py-1 rounded-full bg-[#FF6B6B]/8 border border-[#FF6B6B]/20 text-[#FF6B6B]/70 hover:bg-[#FF6B6B]/15 hover:border-[#FF6B6B]/50 hover:text-[#FF6B6B] transition-all duration-200 cursor-default select-none"
-                                      >
-                                        {tech}
-                                      </span>
+                                      <TechBadge key={tech} label={tech} />
                                     ))}
                                   </div>
                                 )}

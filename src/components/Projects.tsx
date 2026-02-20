@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { projects } from "@/data/content";
+import { TechBadge } from "@/components/TechBadge";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -20,34 +21,26 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative flex flex-col bg-[#111117] border border-[#1f1f28] rounded-2xl overflow-hidden hover:border-[#FF6B6B]/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+      className="group relative flex flex-col bg-[#111117] border border-[#1f1f28] rounded-2xl overflow-hidden hover:border-[#2a2a36] hover:-translate-y-3 hover:shadow-[0_20px_48px_rgba(0,0,0,0.45)] transition-all duration-300"
     >
-      {/* Top accent line */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#FF6B6B]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
       <div className="flex-1 p-6">
         {/* Project number */}
         <p className="font-mono text-xs text-[#FF6B6B]/60 mb-3">
           {String(index + 1).padStart(2, "0")}
         </p>
 
-        <h3 className="font-syne font-bold text-lg text-[#fafaf9] mb-3 group-hover:text-[#FF6B6B] transition-colors">
+        <h3 className="font-syne font-bold text-xl text-[#fafaf9] mb-3">
           {isEn ? project.nameEn : project.name}
         </h3>
 
-        <p className="font-figtree text-sm text-[#71717a] leading-relaxed mb-6">
+        <p className="font-figtree text-base text-[#71717a] leading-relaxed mb-6">
           {isEn ? project.descriptionEn : project.description}
         </p>
 
         {/* Tech tags */}
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="font-mono text-xs px-2.5 py-1 rounded-full bg-[#18181f] border border-[#2a2a36] text-[#71717a]"
-            >
-              {tech}
-            </span>
+            <TechBadge key={tech} label={tech} />
           ))}
         </div>
       </div>

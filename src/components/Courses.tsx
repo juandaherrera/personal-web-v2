@@ -36,7 +36,7 @@ export default function Courses() {
               {totalCourses}
             </span>
           </div>
-          <p className="font-figtree text-[#71717a] text-sm mt-2">
+          <p className="font-figtree text-[#71717a] text-base mt-2">
             {isEn
               ? `${totalCourses} completed courses across all platforms`
               : `${totalCourses} cursos finalizados en todas las plataformas`}
@@ -66,10 +66,10 @@ export default function Courses() {
                   />
                 </div>
                 <div className="flex-1 text-left">
-                  <p className="font-syne font-bold text-[#fafaf9] text-sm">
+                  <p className="font-syne font-bold text-[#fafaf9] text-base">
                     {school.name}
                   </p>
-                  <p className="font-mono text-xs text-[#71717a]">
+                  <p className="font-mono text-sm text-[#71717a]">
                     {school.count} {isEn ? (school.count === 1 ? "course" : "courses") : (school.count === 1 ? "curso" : "cursos")}
                   </p>
                 </div>

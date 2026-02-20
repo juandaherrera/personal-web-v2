@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { personalInfo } from "@/data/content";
+import { LogoMark } from "@/components/LogoMark";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -48,14 +49,7 @@ export default function Header() {
       <div className="section-container h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="group flex items-center">
-          <span
-            className="font-syne font-extrabold text-xl tracking-tight text-[#fafaf9] group-hover:text-[#FF6B6B] transition-colors"
-          >
-            juanda
-          </span>
-          <span className="font-syne font-extrabold text-xl tracking-tight text-[#FF6B6B]">
-            herrera
-          </span>
+          <LogoMark size="text-xl" />
         </Link>
 
         {/* Desktop Nav */}
