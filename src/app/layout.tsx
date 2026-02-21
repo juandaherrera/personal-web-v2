@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Roboto_Condensed, Figtree, JetBrains_Mono } from "next/font/google";
+import { Figtree, JetBrains_Mono, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -27,8 +27,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Juan David Herrera | Web Personal",
-  description:
-    "Portafolio personal de Juan David Herrera — Senior ML Backend Engineer",
+  description: "Portafolio personal de Juan David Herrera — Senior ML Backend Engineer",
   openGraph: {
     title: "Juan David Herrera | Web Personal",
     description:
@@ -43,7 +42,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${robotoCondensed.variable} ${figtree.variable} ${jetbrains.variable}`}>
+    <html
+      lang="es"
+      className={`${robotoCondensed.variable} ${figtree.variable} ${jetbrains.variable}`}
+    >
       <body>
         <LanguageProvider>{children}</LanguageProvider>
       </body>

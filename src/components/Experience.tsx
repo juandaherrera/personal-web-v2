@@ -1,29 +1,53 @@
 "use client";
 
-import { useLanguage } from "@/context/LanguageContext";
-import { experience } from "@/data/content";
-import { TechBadge } from "@/components/TechBadge";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { TechBadge } from "@/components/TechBadge";
+import { useLanguage } from "@/context/LanguageContext";
+import { experience } from "@/data/content";
 
-const MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-const MONTHS_ES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+const MONTHS_EN = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const MONTHS_ES = [
+  "ene",
+  "feb",
+  "mar",
+  "abr",
+  "may",
+  "jun",
+  "jul",
+  "ago",
+  "sep",
+  "oct",
+  "nov",
+  "dic",
+];
 
 function formatDate(dateStr: string | null, isEn: boolean): string {
   if (!dateStr) return isEn ? "Present" : "Actualidad";
-  const d = new Date(dateStr + "T00:00:00");
+  const d = new Date(`${dateStr}T00:00:00`);
   const month = isEn ? MONTHS_EN[d.getMonth()] : MONTHS_ES[d.getMonth()];
   return `${month} ${d.getFullYear()}`;
 }
 
 function getDuration(startStr: string, endStr: string | null, isEn: boolean): string {
-  const start = new Date(startStr + "T00:00:00");
-  const end = endStr ? new Date(endStr + "T00:00:00") : new Date();
+  const start = new Date(`${startStr}T00:00:00`);
+  const end = endStr ? new Date(`${endStr}T00:00:00`) : new Date();
   const months =
-    (end.getFullYear() - start.getFullYear()) * 12 +
-    (end.getMonth() - start.getMonth()) +
-    1; // count start and end month inclusive (LinkedIn style)
+    (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1; // count start and end month inclusive (LinkedIn style)
   const years = Math.floor(months / 12);
   const rem = months % 12;
   const parts: string[] = [];
@@ -56,7 +80,7 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
+          <p className="font-mono text-xs text-accent uppercase tracking-widest mb-4">
             {isEn ? "Work history" : "Trayectoria"}
           </p>
           <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-text-primary leading-tight">
@@ -74,7 +98,7 @@ export default function Experience() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: ci * 0.1 }}
-                className="border border-border-dark rounded-2xl overflow-hidden bg-surface/50 hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
+                className="border border-border-dark rounded-2xl overflow-hidden bg-surface/50 hover:border-border-2 hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
               >
                 {/* Company header */}
                 <div className="flex items-center gap-4 p-6 border-b border-border-dark">
@@ -82,7 +106,7 @@ export default function Experience() {
                     href={company.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-border-dark flex items-center justify-center overflow-hidden hover:border-[#FF6B6B]/30 transition-colors"
+                    className="shrink-0 w-12 h-12 rounded-xl bg-surface-2 border border-border-dark flex items-center justify-center overflow-hidden hover:border-accent/30 transition-colors"
                   >
                     <Image
                       src={company.logo}
@@ -97,9 +121,8 @@ export default function Experience() {
                       {company.name}
                     </h3>
                     <p className="font-mono text-sm text-muted">
-                      {formatDate(companyStart, isEn)} →{" "}
-                      {formatDate(companyEnd, isEn)}{" "}
-                      <span className="text-[#2a2a36]">·</span>{" "}
+                      {formatDate(companyStart, isEn)} → {formatDate(companyEnd, isEn)}{" "}
+                      <span className="text-border-2">·</span>{" "}
                       {getDuration(companyStart, companyEnd, isEn)}
                     </p>
                   </div>
@@ -111,18 +134,19 @@ export default function Experience() {
                 </div>
 
                 {/* Jobs */}
-                <div className="divide-y divide-[#1f1f28]">
+                <div className="divide-y divide-border-dark">
                   {company.jobs.map((job, ji) => {
                     const key = `${company.name}-${ji}`;
                     const isOpen = expanded === key;
                     return (
                       <div key={key}>
                         <button
+                          type="button"
                           onClick={() => setExpanded(isOpen ? null : key)}
                           className={`w-full flex items-center justify-between px-6 py-4 text-left transition-colors border-l-2 ${
                             isOpen
-                              ? "bg-[#18181f] border-l-[#FF6B6B]/50"
-                              : "hover:bg-[#18181f] border-l-transparent"
+                              ? "bg-surface-2 border-l-accent/50"
+                              : "hover:bg-surface-2 border-l-transparent"
                           }`}
                         >
                           <div>
@@ -130,20 +154,20 @@ export default function Experience() {
                               {isEn ? job.titleEn : job.title}
                             </p>
                             <p className="font-mono text-sm text-muted mt-0.5">
-                              {formatDate(job.startDate, isEn)} →{" "}
-                              {formatDate(job.endDate, isEn)}{" "}
-                              <span className="text-[#2a2a36]">·</span>{" "}
+                              {formatDate(job.startDate, isEn)} → {formatDate(job.endDate, isEn)}{" "}
+                              <span className="text-border-2">·</span>{" "}
                               {getDuration(job.startDate, job.endDate, isEn)}
                             </p>
                           </div>
                           <svg
+                            aria-hidden="true"
                             width="16"
                             height="16"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="2"
-                            className={`flex-shrink-0 text-muted transition-transform ${isOpen ? "rotate-180" : ""}`}
+                            className={`shrink-0 text-muted transition-transform ${isOpen ? "rotate-180" : ""}`}
                           >
                             <path d="M6 9l6 6 6-6" />
                           </svg>
@@ -164,8 +188,8 @@ export default function Experience() {
                                 </p>
 
                                 {(isEn ? job.achievementsEn : job.achievements) && (
-                                  <div className="bg-[#FF6B6B]/5 border border-[#FF6B6B]/15 rounded-xl p-4">
-                                    <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-2">
+                                  <div className="bg-accent/5 border border-accent/15 rounded-xl p-4">
+                                    <p className="font-mono text-xs text-accent uppercase tracking-widest mb-2">
                                       {isEn ? "Highlights" : "Logros"}
                                     </p>
                                     <p className="font-figtree text-base text-text-primary/80 leading-relaxed">

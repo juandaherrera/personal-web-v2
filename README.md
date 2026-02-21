@@ -46,6 +46,27 @@ Open [http://localhost:3000](http://localhost:3000). The page hot-reloads as you
 
 ---
 
+## 🔧 Development Workflow
+
+This project uses [Biome](https://biomejs.dev/) as the single tool for linting and formatting.
+
+| Command | What it does |
+|---|---|
+| `make install` | Install dependencies |
+| `make dev` | Start the dev server |
+| `make build` | Production build |
+| `make lint` | Lint and apply safe auto-fixes |
+| `make format` | Format all source files |
+| `make check` | Read-only validation — fails on any issue |
+| `make ci` | Same as `check`, intended for CI pipelines |
+| `make clean` | Remove the `.next` build cache |
+
+**Before committing**, run `make lint` to apply fixes, then `make check` to confirm the output is clean.
+
+**In CI**, only `make ci` runs — it uses `biome check` without `--write`, so it fails if any issue is present.
+
+---
+
 ## 🤖 Vibecoded
 
 This site was built with the help of [Claude Code](https://claude.ai/code). Most of the implementation, from component architecture to animation tuning, was done through AI-assisted pair programming. It was a fun experiment in what modern vibe coding can produce.

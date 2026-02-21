@@ -1,12 +1,22 @@
 "use client";
 
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import Marquee from "react-fast-marquee";
 import { useLanguage } from "@/context/LanguageContext";
 import { technologies } from "@/data/content";
-import { motion, useInView } from "framer-motion";
-import Marquee from "react-fast-marquee";
-import { useRef } from "react";
 
-function TechItem({ name, icon, iconUrl, url }: { name: string; icon: string; iconUrl?: string; url: string }) {
+function TechItem({
+  name,
+  icon,
+  iconUrl,
+  url,
+}: {
+  name: string;
+  icon: string;
+  iconUrl?: string;
+  url: string;
+}) {
   return (
     <a
       href={url === "/" ? "#" : url}
@@ -14,6 +24,7 @@ function TechItem({ name, icon, iconUrl, url }: { name: string; icon: string; ic
       rel="noopener noreferrer"
       className="shrink-0 flex items-center gap-3 px-6 py-4 rounded-xl border border-border-dark bg-surface hover:border-accent/50 hover:bg-accent/5 transition-all group cursor-pointer"
     >
+      {/* biome-ignore lint/performance/noImgElement: uses data URIs and onError handler, incompatible with next/image */}
       <img
         src={iconUrl ?? `https://cdn.simpleicons.org/${icon}/ff4d2e`}
         alt={name}
@@ -64,18 +75,33 @@ export default function TechStack() {
       {/* Marquee rows */}
       <div className="space-y-4">
         {/* Row 1 — left */}
-        <Marquee autoFill speed={40} gradient gradientColor="#09090b" gradientWidth={96} pauseOnHover>
-          {row1.map((tech, i) => (
-            <div key={i} className="px-2">
+        <Marquee
+          autoFill
+          speed={40}
+          gradient
+          gradientColor="#09090b"
+          gradientWidth={96}
+          pauseOnHover
+        >
+          {row1.map((tech) => (
+            <div key={tech.name} className="px-2">
               <TechItem {...tech} />
             </div>
           ))}
         </Marquee>
 
         {/* Row 2 — right */}
-        <Marquee autoFill speed={40} direction="right" gradient gradientColor="#09090b" gradientWidth={96} pauseOnHover>
-          {row2.map((tech, i) => (
-            <div key={i} className="px-2">
+        <Marquee
+          autoFill
+          speed={40}
+          direction="right"
+          gradient
+          gradientColor="#09090b"
+          gradientWidth={96}
+          pauseOnHover
+        >
+          {row2.map((tech) => (
+            <div key={tech.name} className="px-2">
               <TechItem {...tech} />
             </div>
           ))}

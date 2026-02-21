@@ -1,10 +1,10 @@
 "use client";
 
-import { useLanguage } from "@/context/LanguageContext";
-import { education, certifications } from "@/data/content";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { certifications, education } from "@/data/content";
 
 export default function Education() {
   const { isEn } = useLanguage();
@@ -25,7 +25,7 @@ export default function Education() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
+            <p className="font-mono text-xs text-accent uppercase tracking-widest mb-4">
               {isEn ? "Education" : "Educación"}
             </p>
             <h2 className="font-syne font-extrabold text-4xl text-text-primary leading-tight mb-10">
@@ -38,7 +38,7 @@ export default function Education() {
                   key={edu.institution}
                   className="flex items-center gap-4 p-5 rounded-2xl border border-border-dark bg-surface"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#18181f] border border-border-dark flex items-center justify-center overflow-hidden">
+                  <div className="shrink-0 w-14 h-14 rounded-xl bg-surface-2 border border-border-dark flex items-center justify-center overflow-hidden">
                     <Image
                       src={edu.logo}
                       alt={edu.institution}
@@ -51,12 +51,8 @@ export default function Education() {
                     <h3 className="font-syne font-bold text-lg text-text-primary">
                       {isEn ? edu.degreeEn : edu.degree}
                     </h3>
-                    <p className="font-figtree text-base text-muted">
-                      {edu.institution}
-                    </p>
-                    <p className="font-mono text-xs text-[#FF6B6B]/70 mt-0.5">
-                      {edu.period}
-                    </p>
+                    <p className="font-figtree text-base text-muted">{edu.institution}</p>
+                    <p className="font-mono text-xs text-accent/70 mt-0.5">{edu.period}</p>
                   </div>
                 </div>
               ))}
@@ -69,7 +65,7 @@ export default function Education() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
+            <p className="font-mono text-xs text-accent uppercase tracking-widest mb-4">
               {isEn ? "Certifications" : "Certificaciones"}
             </p>
             <h2 className="font-syne font-extrabold text-4xl text-text-primary leading-tight mb-10">
@@ -80,9 +76,9 @@ export default function Education() {
               {certifications.map((cert) => (
                 <div
                   key={cert.title}
-                  className="flex items-center gap-4 p-5 rounded-2xl border border-border-dark bg-surface hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300 group"
+                  className="flex items-center gap-4 p-5 rounded-2xl border border-border-dark bg-surface hover:border-border-2 hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300 group"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-border-dark flex items-center justify-center overflow-hidden">
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-surface-2 border border-border-dark flex items-center justify-center overflow-hidden">
                     <Image
                       src={cert.instituteLogo}
                       alt={cert.institute}
@@ -103,10 +99,11 @@ export default function Education() {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 flex items-center gap-1 font-mono text-xs text-muted hover:text-accent transition-colors"
+                    className="shrink-0 flex items-center gap-1 font-mono text-xs text-muted hover:text-accent transition-colors"
                   >
                     {isEn ? "View" : "Ver"}
                     <svg
+                      aria-hidden="true"
                       width="12"
                       height="12"
                       viewBox="0 0 24 24"

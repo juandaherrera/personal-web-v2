@@ -1,12 +1,12 @@
+import About from "@/components/About";
+import Courses from "@/components/Courses";
+import Education from "@/components/Education";
+import Experience from "@/components/Experience";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import TechStack from "@/components/TechStack";
-import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
-import Education from "@/components/Education";
-import Courses from "@/components/Courses";
-import Footer from "@/components/Footer";
+import TechStack from "@/components/TechStack";
 
 export default function Home() {
   return (

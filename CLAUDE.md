@@ -25,3 +25,12 @@ Examples:
 - `h-[400px]` → `h-100`
 
 Arbitrary values are still fine when no scale equivalent exists (e.g. `blur-[120px]`, `opacity-[0.04]`, `text-[10px]`).
+
+## Code quality
+
+After making any code changes, always run:
+
+1. `make lint` — applies Biome safe auto-fixes and import sorting
+2. `make check` — read-only validation; must pass with 0 errors before committing
+
+Never commit if `make check` reports errors.

@@ -1,10 +1,9 @@
 "use client";
 
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { aboutMe } from "@/data/content";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 const stats = {
   es: [
@@ -66,9 +65,7 @@ export default function About() {
                   <span className="font-syne font-extrabold text-3xl text-accent">
                     {stat.value}
                   </span>
-                  <span className="font-figtree text-base text-muted">
-                    {stat.label}
-                  </span>
+                  <span className="font-figtree text-base text-muted">{stat.label}</span>
                 </div>
               ))}
             </div>
