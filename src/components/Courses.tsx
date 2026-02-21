@@ -49,19 +49,19 @@ export default function Courses() {
           <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
             {isEn ? "Lifelong learning" : "Aprendizaje continuo"}
           </p>
-          <div className="flex items-end gap-6">
-            <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-[#fafaf9] leading-tight">
-              {isEn ? "Courses" : "Cursos"}
-            </h2>
-            <span className="font-mono text-[#FF6B6B] text-2xl font-bold mb-1">
+          <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-text-primary leading-tight">
+            {isEn ? "Courses" : "Cursos"}
+          </h2>
+          <div className="flex items-baseline gap-3 mt-3">
+            <span className="font-mono text-[#FF6B6B] text-3xl font-bold leading-none">
               {totalCourses}
             </span>
+            <p className="font-figtree text-muted text-base">
+              {isEn
+                ? "completed courses across all platforms"
+                : "cursos finalizados en todas las plataformas"}
+            </p>
           </div>
-          <p className="font-figtree text-[#71717a] text-base mt-2">
-            {isEn
-              ? `${totalCourses} completed courses across all platforms`
-              : `${totalCourses} cursos finalizados en todas las plataformas`}
-          </p>
         </motion.div>
 
         <div className="space-y-4">
@@ -80,7 +80,7 @@ export default function Courses() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="border border-[#1f1f28] rounded-2xl overflow-hidden bg-[#111117]/50 hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
+                className="border border-border-dark rounded-2xl overflow-hidden bg-surface/50 hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
               >
                 {/* Platform header */}
                 <button
@@ -89,7 +89,7 @@ export default function Courses() {
                     isOpen ? "bg-[#18181f]" : "hover:bg-[#18181f]"
                   }`}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-border-dark flex items-center justify-center overflow-hidden">
                     <Image
                       src={school.logo}
                       alt={school.name}
@@ -98,10 +98,10 @@ export default function Courses() {
                       className="w-7 h-7 object-contain brightness-0 invert"
                     />
                   </div>
-                  <p className="flex-1 font-syne font-bold text-xl text-[#fafaf9]">
+                  <p className="flex-1 font-syne font-bold text-xl text-text-primary">
                     {school.name}
                   </p>
-                  <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-[#1f1f28] text-[#71717a]">
+                  <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-[#1f1f28] text-muted">
                     {school.courses.length}{" "}
                     {isEn
                       ? school.courses.length === 1 ? "course" : "courses"
@@ -114,7 +114,7 @@ export default function Courses() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    className={`flex-shrink-0 text-[#71717a] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    className={`flex-shrink-0 text-muted transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   >
                     <path d="M6 9l6 6 6-6" />
                   </svg>
@@ -130,18 +130,18 @@ export default function Courses() {
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="border-t border-[#1f1f28]">
+                      <div className="border-t border-border-dark">
                         {visibleCourses.map((course, ci) => (
                           <div
                             key={ci}
-                            className="px-6 py-4 border-b border-[#1f1f28] last:border-b-0"
+                            className="px-6 py-4 border-b border-border-dark last:border-b-0"
                           >
                             {/* Row 1: name + date */}
                             <div className="flex items-baseline justify-between gap-4">
-                              <p className="font-figtree text-base text-[#fafaf9] flex-1 min-w-0">
+                              <p className="font-figtree text-base text-text-primary flex-1 min-w-0">
                                 {isEn ? course.nameEn : course.nameEs}
                               </p>
-                              <span className="font-mono text-sm text-[#71717a] flex-shrink-0">
+                              <span className="font-mono text-sm text-muted flex-shrink-0">
                                 {formatCourseDate(course.issueDate, isEn)}
                               </span>
                             </div>
@@ -157,7 +157,7 @@ export default function Courses() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded-full border border-[#FF6B6B]/25 text-[#FF6B6B]/70 bg-[#FF6B6B]/5 hover:bg-[#FF6B6B]/15 hover:border-[#FF6B6B]/50 hover:text-[#FF6B6B] transition-all duration-200 whitespace-nowrap flex-shrink-0"
+                                className="inline-flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded-full border border-[#FF6B6B]/25 text-[#FF6B6B]/70 bg-[#FF6B6B]/5 hover:bg-[#FF6B6B]/15 hover:border-[#FF6B6B]/50 hover:text-accent transition-all duration-200 whitespace-nowrap flex-shrink-0"
                               >
                                 {isEn ? "Credential" : "Credencial"}
                                 <svg
@@ -179,7 +179,7 @@ export default function Courses() {
                         {hasMore && (
                           <button
                             onClick={() => toggleShowAll(school.name)}
-                            className="w-full flex items-center justify-center gap-2 py-3.5 font-mono text-sm text-[#71717a] hover:text-[#fafaf9] hover:bg-[#18181f] transition-all duration-200 border-t border-[#1f1f28]"
+                            className="w-full flex items-center justify-center gap-2 py-3.5 font-mono text-sm text-muted hover:text-text-primary hover:bg-[#18181f] transition-all duration-200 border-t border-border-dark"
                           >
                             {isShowingAll ? (
                               <>

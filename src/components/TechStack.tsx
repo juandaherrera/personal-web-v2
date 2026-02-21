@@ -12,7 +12,7 @@ function TechItem({ name, icon, iconUrl, url }: { name: string; icon: string; ic
       href={url === "/" ? "#" : url}
       target={url !== "/" ? "_blank" : undefined}
       rel="noopener noreferrer"
-      className="flex-shrink-0 flex items-center gap-3 px-6 py-4 rounded-xl border border-[#1f1f28] bg-[#111117] hover:border-[#FF6B6B]/50 hover:bg-[#FF6B6B]/5 transition-all group cursor-pointer"
+      className="shrink-0 flex items-center gap-3 px-6 py-4 rounded-xl border border-border-dark bg-surface hover:border-accent/50 hover:bg-accent/5 transition-all group cursor-pointer"
     >
       <img
         src={iconUrl ?? `https://cdn.simpleicons.org/${icon}/ff4d2e`}
@@ -24,7 +24,7 @@ function TechItem({ name, icon, iconUrl, url }: { name: string; icon: string; ic
           (e.target as HTMLImageElement).style.display = "none";
         }}
       />
-      <span className="font-mono text-base text-[#71717a] group-hover:text-[#fafaf9] transition-colors whitespace-nowrap">
+      <span className="font-mono text-base text-muted group-hover:text-text-primary transition-colors whitespace-nowrap">
         {name}
       </span>
     </a>
@@ -52,10 +52,10 @@ export default function TechStack() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
+          <p className="font-mono text-xs text-accent uppercase tracking-widest mb-4">
             {isEn ? "Tech stack" : "Tecnologías"}
           </p>
-          <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-[#fafaf9] leading-tight">
+          <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-text-primary leading-tight">
             {isEn ? "Tools I work with" : "Herramientas con las que trabajo"}
           </h2>
         </motion.div>

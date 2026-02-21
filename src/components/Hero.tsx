@@ -35,10 +35,10 @@ function Typewriter({ words }: { words: string[] }) {
   }, [subIndex, deleting, index, words]);
 
   return (
-    <span className="font-mono text-[#FF6B6B]">
+    <span className="font-mono text-accent">
       {words[index].substring(0, subIndex)}
       <span
-        className={`inline-block w-0.5 h-5 bg-[#FF6B6B] ml-0.5 align-middle transition-opacity ${
+        className={`inline-block w-0.5 h-5 bg-accent ml-0.5 align-middle transition-opacity ${
           blink ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -66,8 +66,8 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Background accent */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#FF6B6B] opacity-[0.04] rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-[#FFB3B3] opacity-[0.03] rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 right-0 w-150 h-150 bg-accent opacity-[0.04] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-1/4 w-100 h-100 bg-accent-2 opacity-[0.03] rounded-full blur-[100px]" />
       </div>
 
       <div className="section-container py-24">
@@ -81,15 +81,15 @@ export default function Hero() {
           >
             <motion.p
               variants={item}
-              className="font-mono text-base text-[#71717a] mb-6 flex items-center gap-2"
+              className="font-mono text-base text-muted mb-6 flex items-center gap-2"
             >
-              <span className="w-8 h-px bg-[#FF6B6B]" />
+              <span className="w-8 h-px bg-accent" />
               {isEn ? "Hello 👋🏻, I'm" : "Hola 👋🏻, soy"}
             </motion.p>
 
             <motion.h1
               variants={item}
-              className="font-syne font-extrabold text-5xl md:text-6xl xl:text-7xl leading-[1.05] text-[#fafaf9] mb-4"
+              className="font-syne font-extrabold text-5xl md:text-6xl xl:text-7xl leading-[1.05] text-text-primary mb-4"
             >
               Juan David
               <br />
@@ -104,21 +104,21 @@ export default function Hero() {
               variants={item}
               className="flex items-center gap-2 mb-8"
             >
-              <span className="font-figtree text-[#71717a] text-base">
+              <span className="font-figtree text-muted text-base">
                 {isEn ? "Currently at" : "Actualmente en"}
               </span>
               <a
                 href={personalInfo.currentCompanyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-syne font-semibold text-sm text-[#fafaf9] hover:text-[#FF6B6B] transition-colors"
+                className="flex items-center gap-1.5 font-syne font-semibold text-sm text-text-primary hover:text-accent transition-colors"
               >
                 <Image
                   src={personalInfo.currentCompanyLogo}
                   alt={personalInfo.currentCompany}
                   width={80}
                   height={20}
-                  className="h-5 w-auto brightness-0 invert transition-transform duration-200 hover:scale-110"
+                  className="h-5 w-auto brightness-0 invert transition-transform duration-200 hover:scale-105"
                 />
               </a>
             </motion.div>
@@ -146,7 +146,7 @@ export default function Hero() {
             <motion.div variants={item} className="flex items-center gap-4">
               <a
                 href="#about"
-                className="group inline-flex items-center gap-2 bg-[#FF6B6B] text-white font-figtree font-semibold text-sm px-6 py-3 rounded-full hover:bg-[#FF5252] transition-colors"
+                className="group inline-flex items-center gap-2 bg-accent text-white font-figtree font-semibold text-sm px-6 py-3 rounded-full hover:bg-accent/85 transition-colors"
               >
                 {isEn ? "Learn more about me" : "Conoce más de mí"}
                 <svg
@@ -162,6 +162,7 @@ export default function Hero() {
                 </svg>
               </a>
             </motion.div>
+
           </motion.div>
 
           {/* Photo */}
@@ -173,11 +174,11 @@ export default function Hero() {
           >
             <div className="relative">
               {/* Decorative ring */}
-              <div className="absolute inset-0 rounded-full border border-[#FF6B6B]/20 scale-110" />
-              <div className="absolute inset-0 rounded-full border border-[#FF6B6B]/10 scale-125" />
+              <div className="absolute inset-0 rounded-full border border-accent/20 scale-110" />
+              <div className="absolute inset-0 rounded-full border border-accent/10 scale-125" />
               {/* Accent corner */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#FF6B6B]/10 rounded-2xl blur-xl" />
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-[#1f1f28]" style={{ position: "relative" }}>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent/10 rounded-2xl blur-xl" />
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-border-dark" style={{ position: "relative" }}>
                 <Image
                   src={personalInfo.photo}
                   alt="Juan David Herrera"
@@ -192,10 +193,10 @@ export default function Hero() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
-                className="absolute -bottom-2 -right-4 bg-[#111117] border border-[#1f1f28] rounded-xl px-3 py-2 flex items-center gap-2 shadow-xl"
+                className="absolute -bottom-2 -right-4 bg-surface border border-border-dark rounded-xl px-3 py-2 flex items-center gap-2 shadow-xl"
               >
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-mono text-xs text-[#71717a]">
+                <span className="font-mono text-xs text-muted">
                   {isEn ? "Available" : "Disponible"}
                 </span>
               </motion.div>
@@ -210,8 +211,8 @@ export default function Hero() {
           transition={{ delay: 1.2 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="font-mono text-xs text-[#71717a]">scroll</span>
-          <div className="w-px h-8 bg-gradient-to-b from-[#FF6B6B] to-transparent" />
+          <span className="font-mono text-xs text-muted">scroll</span>
+          <div className="w-px h-8 bg-linear-to-b from-accent to-transparent" />
         </motion.div>
       </div>
     </section>
@@ -233,7 +234,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex items-center justify-center w-10 h-10 rounded-full border border-[#1f1f28] text-[#71717a] hover:border-[#FF6B6B] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/5 transition-all"
+      className="flex items-center justify-center w-10 h-10 rounded-full border border-border-dark text-muted hover:border-accent hover:text-accent hover:bg-accent/5 transition-all"
     >
       {children}
     </a>

@@ -13,17 +13,17 @@ export default function Home() {
     <main className="relative">
       <Header />
       <Hero />
-      <div className="border-t border-[#1f1f28]" />
+      <div className="border-t border-border-dark" />
       <About />
-      <div className="border-t border-[#1f1f28]" />
+      <div className="border-t border-border-dark" />
       <TechStack />
-      <div className="border-t border-[#1f1f28]" />
+      <div className="border-t border-border-dark" />
       <Experience />
-      <div className="border-t border-[#1f1f28]" />
+      <div className="border-t border-border-dark" />
       <Projects />
-      <div className="border-t border-[#1f1f28]" />
+      <div className="border-t border-border-dark" />
       <Education />
-      <div className="border-t border-[#1f1f28]" />
+      <div className="border-t border-border-dark" />
       <Courses />
       <Footer />
     </main>

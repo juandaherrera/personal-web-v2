@@ -40,10 +40,10 @@ export default function Header() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-[background-color,border-color] duration-300 pt-[env(safe-area-inset-top)] border-b ${
         scrolled
-          ? "bg-[#09090b]/90 backdrop-blur-md border-b border-[#1f1f28]"
-          : "bg-transparent"
+          ? "bg-bg/90 border-border-dark"
+          : "bg-transparent border-transparent"
       }`}
     >
       <div className="section-container h-16 flex items-center justify-between">
@@ -58,7 +58,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="font-figtree text-sm text-[#71717a] hover:text-[#fafaf9] transition-colors"
+              className="font-figtree text-sm text-muted hover:text-text-primary transition-colors"
             >
               {item.label}
             </Link>
@@ -70,12 +70,12 @@ export default function Header() {
           {/* Lang toggle */}
           <button
             onClick={() => setLang(isEn ? "es" : "en")}
-            className="flex items-center gap-1.5 font-mono text-xs border border-[#1f1f28] rounded-full px-3 py-1.5 text-[#71717a] hover:border-[#FF6B6B] hover:text-[#FF6B6B] transition-all"
+            className="flex items-center gap-1.5 font-mono text-xs border border-border-dark rounded-full px-3 py-1.5 text-muted hover:border-accent hover:text-accent transition-all"
             aria-label="Toggle language"
           >
-            <span className={isEn ? "text-[#fafaf9]" : "text-[#71717a]"}>EN</span>
-            <span className="text-[#2a2a36]">/</span>
-            <span className={!isEn ? "text-[#fafaf9]" : "text-[#71717a]"}>ES</span>
+            <span className={isEn ? "text-text-primary" : "text-muted"}>EN</span>
+            <span className="text-border-2">/</span>
+            <span className={!isEn ? "text-text-primary" : "text-muted"}>ES</span>
           </button>
 
           {/* GitHub */}
@@ -83,7 +83,7 @@ export default function Header() {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center justify-center w-8 h-8 rounded-full border border-[#1f1f28] text-[#71717a] hover:border-[#FF6B6B] hover:text-[#FF6B6B] transition-all"
+            className="hidden md:flex items-center justify-center w-8 h-8 rounded-full border border-border-dark text-muted hover:border-accent hover:text-accent transition-all"
             aria-label="GitHub"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -98,13 +98,13 @@ export default function Header() {
             aria-label="Menu"
           >
             <span
-              className={`block w-5 h-0.5 bg-[#fafaf9] transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+              className={`block w-5 h-0.5 bg-text-primary transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
             />
             <span
-              className={`block w-5 h-0.5 bg-[#fafaf9] transition-opacity ${menuOpen ? "opacity-0" : ""}`}
+              className={`block w-5 h-0.5 bg-text-primary transition-opacity ${menuOpen ? "opacity-0" : ""}`}
             />
             <span
-              className={`block w-5 h-0.5 bg-[#fafaf9] transition-transform ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+              className={`block w-5 h-0.5 bg-text-primary transition-transform ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
             />
           </button>
         </div>
@@ -115,14 +115,14 @@ export default function Header() {
         <motion.nav
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-[#111117] border-b border-[#1f1f28] px-6 py-4 flex flex-col gap-4"
+          className="md:hidden bg-surface border-b border-border-dark px-6 py-4 flex flex-col gap-4"
         >
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="font-figtree text-sm text-[#71717a] hover:text-[#fafaf9] transition-colors"
+              className="font-figtree text-sm text-muted hover:text-text-primary transition-colors"
             >
               {item.label}
             </Link>

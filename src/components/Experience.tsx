@@ -59,7 +59,7 @@ export default function Experience() {
           <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
             {isEn ? "Work history" : "Trayectoria"}
           </p>
-          <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-[#fafaf9] leading-tight">
+          <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-text-primary leading-tight">
             {isEn ? "Where I've worked" : "Dónde he trabajado"}
           </h2>
         </motion.div>
@@ -74,15 +74,15 @@ export default function Experience() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: ci * 0.1 }}
-                className="border border-[#1f1f28] rounded-2xl overflow-hidden bg-[#111117]/50 hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
+                className="border border-border-dark rounded-2xl overflow-hidden bg-surface/50 hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
               >
                 {/* Company header */}
-                <div className="flex items-center gap-4 p-6 border-b border-[#1f1f28]">
+                <div className="flex items-center gap-4 p-6 border-b border-border-dark">
                   <a
                     href={company.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden hover:border-[#FF6B6B]/30 transition-colors"
+                    className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-border-dark flex items-center justify-center overflow-hidden hover:border-[#FF6B6B]/30 transition-colors"
                   >
                     <Image
                       src={company.logo}
@@ -93,10 +93,10 @@ export default function Experience() {
                     />
                   </a>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-syne font-bold text-xl text-[#fafaf9]">
+                    <h3 className="font-syne font-bold text-xl text-text-primary">
                       {company.name}
                     </h3>
-                    <p className="font-mono text-sm text-[#71717a]">
+                    <p className="font-mono text-sm text-muted">
                       {formatDate(companyStart, isEn)} →{" "}
                       {formatDate(companyEnd, isEn)}{" "}
                       <span className="text-[#2a2a36]">·</span>{" "}
@@ -126,10 +126,10 @@ export default function Experience() {
                           }`}
                         >
                           <div>
-                            <p className="font-figtree font-semibold text-[#fafaf9] text-base">
+                            <p className="font-figtree font-semibold text-text-primary text-base">
                               {isEn ? job.titleEn : job.title}
                             </p>
-                            <p className="font-mono text-sm text-[#71717a] mt-0.5">
+                            <p className="font-mono text-sm text-muted mt-0.5">
                               {formatDate(job.startDate, isEn)} →{" "}
                               {formatDate(job.endDate, isEn)}{" "}
                               <span className="text-[#2a2a36]">·</span>{" "}
@@ -143,7 +143,7 @@ export default function Experience() {
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="2"
-                            className={`flex-shrink-0 text-[#71717a] transition-transform ${isOpen ? "rotate-180" : ""}`}
+                            className={`flex-shrink-0 text-muted transition-transform ${isOpen ? "rotate-180" : ""}`}
                           >
                             <path d="M6 9l6 6 6-6" />
                           </svg>
@@ -159,7 +159,7 @@ export default function Experience() {
                               className="overflow-hidden"
                             >
                               <div className="px-6 pt-4 pb-6 space-y-6">
-                                <p className="font-figtree text-[#71717a] text-base leading-relaxed">
+                                <p className="font-figtree text-muted text-base leading-relaxed">
                                   {isEn ? job.descriptionEn : job.description}
                                 </p>
 
@@ -168,7 +168,7 @@ export default function Experience() {
                                     <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-2">
                                       {isEn ? "Highlights" : "Logros"}
                                     </p>
-                                    <p className="font-figtree text-base text-[#fafaf9]/80 leading-relaxed">
+                                    <p className="font-figtree text-base text-text-primary/80 leading-relaxed">
                                       {isEn ? job.achievementsEn : job.achievements}
                                     </p>
                                   </div>

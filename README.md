@@ -1,23 +1,58 @@
-# 👋🏻 Welcome to my personal web
-## Description
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# juandaherrera.com — v6
 
-## Getting Started
+My personal corner of the internet. A portfolio that showcases who I am, what I've built, and what I know. Rebuilt from scratch with a modern stack and a healthy dose of vibe coding.
 
-First, run the development server:
+> **This is the sixth (and best) iteration of my personal site.** Previous versions go back years, most recently [v5](https://github.com/juandaherrera/personal_web) which was built with Python + [Reflex](https://reflex.dev/). This version is a full rewrite in Next.js — faster, smoother, and vibecoded with the help of [Claude Code](https://claude.ai/code).
+
+---
+
+## ✨ What's inside
+
+The site is organized into the following sections:
+
+| Section | What you'll find |
+|---|---|
+| **Hero** | A quick intro and typewriter effect cycling through my roles |
+| **About** | A bit more about who I am |
+| **Tech Stack** | The tools and technologies I work with daily |
+| **Experience** | My professional journey, company by company |
+| **Projects** | Things I've built and shipped |
+| **Education & Certifications** | Degrees, certs, and courses |
+| **Footer** | Links, credits, and the vibecode disclosure |
+
+Language switching (ES / EN) is supported across the whole site.
+
+---
+
+## 🛠️ Tech stack
+
+- **[Next.js 16](https://nextjs.org/)** + **[React 19](https://react.dev/)** — app router, server components
+- **[TypeScript](https://www.typescriptlang.org/)** — because types are non-negotiable
+- **[Tailwind CSS v4](https://tailwindcss.com/)** — utility-first styling
+- **[Framer Motion](https://www.framer-motion.com/)** — scroll animations and staggered reveals
+- **[react-fast-marquee](https://www.react-fast-marquee.com/)** — the scrolling tech stack strip
+- **[Simple Icons](https://simpleicons.org/)** CDN — icon sprites for every tech and tool
+
+---
+
+## 🚀 Running locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The page hot-reloads as you edit.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤖 Vibecoded
+
+This site was built with the help of [Claude Code](https://claude.ai/code). Most of the implementation, from component architecture to animation tuning, was done through AI-assisted pair programming. It was a fun experiment in what modern vibe coding can produce.
+
+---
+
+## 📬 Get in touch
+
+- LinkedIn: [linkedin.com/in/juan-david-herrera](https://www.linkedin.com/in/juan-david-herrera/)
+- Email: juandaherreparra@gmail.com

@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { personalInfo } from "@/data/content";
+import { personalInfo, vibecodeCredits } from "@/data/content";
 import { LogoMark } from "@/components/LogoMark";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -13,7 +13,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="footer" className="relative py-24 border-t border-[#1f1f28] overflow-hidden" ref={ref}>
+    <footer id="footer" className="relative py-24 border-t border-border-dark overflow-hidden" ref={ref}>
       {/* Big background text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
@@ -61,7 +61,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex items-center justify-center w-10 h-10 rounded-full border border-[#1f1f28] text-[#71717a] hover:border-[#FF6B6B] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/5 transition-all"
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-border-dark text-muted hover:border-accent hover:text-accent hover:bg-accent/5 transition-all"
               >
                 {icon}
               </a>
@@ -69,16 +69,16 @@ export default function Footer() {
           </div>
 
           {/* Divider */}
-          <div className="w-16 h-px bg-[#FF6B6B]/30 mx-auto mb-8" />
+          <div className="w-16 h-px bg-accent/30 mx-auto mb-8" />
 
           {/* Copyright */}
-          <p className="font-figtree text-base text-[#71717a]">
+          <p className="font-figtree text-base text-muted">
             © {year}{" "}
             <a
               href={personalInfo.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#fafaf9] hover:text-[#FF6B6B] transition-colors"
+              className="text-text-primary hover:text-accent transition-colors"
             >
               {personalInfo.handle}
             </a>{" "}
@@ -87,16 +87,39 @@ export default function Footer() {
               href={personalInfo.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-sm hover:text-[#FF6B6B] transition-colors"
+              className="font-mono text-sm hover:text-accent transition-colors"
             >
               {personalInfo.version}
             </a>
           </p>
-          <p className="font-figtree text-sm text-[#71717a]/60 mt-2">
+          <p className="font-figtree text-sm text-muted/60 mt-2">
             {isEn
-              ? `Made with 🧡 from ${personalInfo.location}`
-              : `Hecho con 🧡 desde ${personalInfo.location}`}
+              ? `made with 🧡 from ${personalInfo.location}`
+              : `hecho con 🧡 desde ${personalInfo.location}`}
           </p>
+
+          {/* Vibecoded credits */}
+          <div className="flex items-center justify-center gap-2 mt-3 flex-wrap">
+            <span className="font-mono text-xs  text-muted/60">
+              {isEn ? "this site was vibecoded with the help of" : "este sitio fue vibecodeado con ayuda de"}
+            </span>
+            {vibecodeCredits.map((credit) => (
+              <a
+                key={credit.name}
+                href={credit.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-mono text-xs px-2 py-0.5 rounded-full border border-border-dark text-muted/60 hover:border-accent/40 hover:text-muted transition-all duration-200"
+              >
+                <img
+                  src={`https://cdn.simpleicons.org/${credit.icon}/9ca3af`}
+                  alt={credit.name}
+                  className="w-3 h-3"
+                />
+                {credit.name}
+              </a>
+            ))}
+          </div>
         </motion.div>
       </div>
     </footer>

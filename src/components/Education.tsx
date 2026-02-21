@@ -28,7 +28,7 @@ export default function Education() {
             <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
               {isEn ? "Education" : "Educación"}
             </p>
-            <h2 className="font-syne font-extrabold text-4xl text-[#fafaf9] leading-tight mb-10">
+            <h2 className="font-syne font-extrabold text-4xl text-text-primary leading-tight mb-10">
               {isEn ? "Academic background" : "Formación académica"}
             </h2>
 
@@ -36,9 +36,9 @@ export default function Education() {
               {education.map((edu) => (
                 <div
                   key={edu.institution}
-                  className="flex items-center gap-4 p-5 rounded-2xl border border-[#1f1f28] bg-[#111117]"
+                  className="flex items-center gap-4 p-5 rounded-2xl border border-border-dark bg-surface"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#18181f] border border-border-dark flex items-center justify-center overflow-hidden">
                     <Image
                       src={edu.logo}
                       alt={edu.institution}
@@ -48,10 +48,10 @@ export default function Education() {
                     />
                   </div>
                   <div>
-                    <h3 className="font-syne font-bold text-lg text-[#fafaf9]">
+                    <h3 className="font-syne font-bold text-lg text-text-primary">
                       {isEn ? edu.degreeEn : edu.degree}
                     </h3>
-                    <p className="font-figtree text-base text-[#71717a]">
+                    <p className="font-figtree text-base text-muted">
                       {edu.institution}
                     </p>
                     <p className="font-mono text-xs text-[#FF6B6B]/70 mt-0.5">
@@ -72,7 +72,7 @@ export default function Education() {
             <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
               {isEn ? "Certifications" : "Certificaciones"}
             </p>
-            <h2 className="font-syne font-extrabold text-4xl text-[#fafaf9] leading-tight mb-10">
+            <h2 className="font-syne font-extrabold text-4xl text-text-primary leading-tight mb-10">
               {isEn ? "Credentials" : "Credenciales"}
             </h2>
 
@@ -80,9 +80,9 @@ export default function Education() {
               {certifications.map((cert) => (
                 <div
                   key={cert.title}
-                  className="flex items-center gap-4 p-5 rounded-2xl border border-[#1f1f28] bg-[#111117] hover:border-[#2a2a36] hover:-translate-y-1.5 hover:shadow-[0_10px_28px_rgba(0,0,0,0.4)] transition-all duration-300 group"
+                  className="flex items-center gap-4 p-5 rounded-2xl border border-border-dark bg-surface hover:border-[#2a2a36] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300 group"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-[#1f1f28] flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#18181f] border border-border-dark flex items-center justify-center overflow-hidden">
                     <Image
                       src={cert.instituteLogo}
                       alt={cert.institute}
@@ -92,10 +92,10 @@ export default function Education() {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-syne font-bold text-base text-[#fafaf9] truncate">
+                    <h3 className="font-syne font-bold text-base text-text-primary truncate">
                       {cert.title}
                     </h3>
-                    <p className="font-figtree text-sm text-[#71717a]">
+                    <p className="font-figtree text-sm text-muted">
                       {cert.institute} · {cert.year}
                     </p>
                   </div>
@@ -103,7 +103,7 @@ export default function Education() {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 flex items-center gap-1 font-mono text-xs text-[#71717a] hover:text-[#FF6B6B] transition-colors"
+                    className="flex-shrink-0 flex items-center gap-1 font-mono text-xs text-muted hover:text-accent transition-colors"
                   >
                     {isEn ? "View" : "Ver"}
                     <svg

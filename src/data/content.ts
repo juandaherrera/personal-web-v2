@@ -396,3 +396,11 @@ export const courseSchools: CourseSchool[] = [
 ];
 
 export const totalCourses = courseSchools.reduce((acc, s) => acc + s.courses.length, 0);
+
+export const vibecodeCredits = [
+  {
+    name: "Claude Code",
+    icon: "anthropic",
+    url: "https://claude.ai/code",
+  },
+];

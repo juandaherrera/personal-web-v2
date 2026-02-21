@@ -9,12 +9,12 @@ import { useRef } from "react";
 const stats = {
   es: [
     { value: "5+", label: "Años de experiencia" },
-    { value: "3", label: "Empresas tech" },
+    { value: "2", label: "Empresas tech" },
     { value: "ML", label: "Backend & Data" },
   ],
   en: [
     { value: "5+", label: "Years of experience" },
-    { value: "3", label: "Tech companies" },
+    { value: "2", label: "Tech companies" },
     { value: "ML", label: "Backend & Data" },
   ],
 };
@@ -40,21 +40,21 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
+            <p className="font-mono text-xs text-accent uppercase tracking-widest mb-4">
               {isEn ? "About me" : "Sobre mí"}
             </p>
-            <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-[#fafaf9] leading-tight mb-12">
+            <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-text-primary leading-tight mb-12">
               {isEn ? (
                 <>
-                  Engineer who loves
+                  Driven by
                   <br />
-                  <span className="text-gradient">building systems</span>
+                  <span className="text-gradient">curiosity</span>
                 </>
               ) : (
                 <>
-                  Ingeniero que ama
+                  Construyendo desde
                   <br />
-                  <span className="text-gradient">construir sistemas</span>
+                  <span className="text-gradient">la curiosidad</span>
                 </>
               )}
             </h2>
@@ -63,10 +63,10 @@ export default function About() {
             <div className="flex gap-8">
               {statList.map((stat) => (
                 <div key={stat.label} className="flex flex-col gap-1">
-                  <span className="font-syne font-extrabold text-3xl text-[#FF6B6B]">
+                  <span className="font-syne font-extrabold text-3xl text-accent">
                     {stat.value}
                   </span>
-                  <span className="font-figtree text-base text-[#71717a]">
+                  <span className="font-figtree text-base text-muted">
                     {stat.label}
                   </span>
                 </div>
@@ -80,7 +80,7 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="font-figtree text-[#71717a] leading-relaxed text-base md:text-lg border-l-2 border-[#FF6B6B]/30 pl-6">
+            <p className="font-figtree text-muted leading-relaxed text-base md:text-lg border-l-2 border-accent/30 pl-6">
               {isEn ? aboutMe.en : aboutMe.es}
             </p>
           </motion.div>

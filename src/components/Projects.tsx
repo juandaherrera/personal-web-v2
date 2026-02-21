@@ -21,19 +21,19 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative flex flex-col bg-[#111117] border border-[#1f1f28] rounded-2xl overflow-hidden hover:border-[#2a2a36] hover:-translate-y-3 hover:shadow-[0_20px_48px_rgba(0,0,0,0.45)] transition-all duration-300"
+      className="group relative flex flex-col bg-surface border border-border-dark rounded-2xl overflow-hidden hover:border-[#2a2a36] hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
     >
       <div className="flex-1 p-6">
         {/* Project number */}
-        <p className="font-mono text-xs text-[#FF6B6B]/60 mb-3">
+        <p className="font-mono text-xs text-accent/60 mb-3">
           {String(index + 1).padStart(2, "0")}
         </p>
 
-        <h3 className="font-syne font-bold text-xl text-[#fafaf9] mb-3">
+        <h3 className="font-syne font-bold text-xl text-text-primary mb-3">
           {isEn ? project.nameEn : project.name}
         </h3>
 
-        <p className="font-figtree text-base text-[#71717a] leading-relaxed mb-6">
+        <p className="font-figtree text-base text-muted leading-relaxed mb-6">
           {isEn ? project.descriptionEn : project.description}
         </p>
 
@@ -46,12 +46,12 @@ function ProjectCard({
       </div>
 
       {/* Footer */}
-      <div className="px-6 py-4 border-t border-[#1f1f28] flex items-center gap-3">
+      <div className="px-6 py-4 border-t border-border-dark flex items-center gap-3">
         <a
           href={project.repositoryUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 font-mono text-xs text-[#71717a] hover:text-[#FF6B6B] transition-colors"
+          className="flex items-center gap-2 font-mono text-xs text-muted hover:text-accent transition-colors"
           aria-label="Repository"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -64,7 +64,7 @@ function ProjectCard({
             href={project.websiteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 font-mono text-xs text-[#71717a] hover:text-[#FF6B6B] transition-colors"
+            className="flex items-center gap-2 font-mono text-xs text-muted hover:text-accent transition-colors"
           >
             <svg
               width="14"
@@ -97,7 +97,7 @@ export default function Projects() {
 
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#FF6B6B] opacity-[0.03] rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-accent opacity-[0.03] rounded-full blur-[100px]" />
       </div>
 
       <div className="section-container" ref={ref}>
@@ -107,10 +107,10 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="font-mono text-xs text-[#FF6B6B] uppercase tracking-widest mb-4">
+          <p className="font-mono text-xs text-accent uppercase tracking-widest mb-4">
             {isEn ? "My work" : "Mis proyectos"}
           </p>
-          <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-[#fafaf9] leading-tight">
+          <h2 className="font-syne font-extrabold text-4xl md:text-5xl text-text-primary leading-tight">
             {isEn ? "Things I've built" : "Cosas que he construido"}
           </h2>
         </motion.div>
