@@ -52,6 +52,23 @@ This site was built with the help of [Claude Code](https://claude.ai/code). Most
 
 ---
 
+## 📝 Commit conventions
+
+Commits follow the format `<emoji> <prefix>: <message>`.
+
+| Prefix | When to use |
+|---|---|
+| `feat` | New section, component, or visible functionality |
+| `fix` | Visual or behavioral bug |
+| `style` | Design tweaks — spacing, colors, typography — no logic changes |
+| `refactor` | Code restructure without behavior change (e.g. extract component, rename) |
+| `content` | Data changes: `content.ts`, copy, images |
+| `ci` | GitHub/Azure workflows, deploy config |
+| `chore` | Dependencies, config files (`tailwind.config`, `tsconfig`, etc.) |
+| `docs` | `README.md`, `CLAUDE.md` |
+
+---
+
 ## 📬 Get in touch
 
 - LinkedIn: [linkedin.com/in/juan-david-herrera](https://www.linkedin.com/in/juan-david-herrera/)
