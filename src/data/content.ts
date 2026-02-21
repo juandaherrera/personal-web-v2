@@ -9,7 +9,7 @@ export const personalInfo = {
   currentCompanyUrl: "https://snoonu.com/",
   currentCompanyLogo: "/icons/snoonu_full.svg",
   repoUrl: "https://github.com/juandaherrera/personal_web",
-  version: "v6.0.0",
+  version: "v6.1.0",
   location: "Palmira, Colombia 🇨🇴",
 };
 
@@ -223,19 +223,35 @@ export interface Project {
   nameEn: string;
   description: string;
   descriptionEn: string;
+  note?: string;
+  noteEn?: string;
   technologies: string[];
   repositoryUrl: string;
   websiteUrl?: string;
+  vibecoded?: boolean;
 }
 
 export const projects: Project[] = [
   {
-    name: "Web Personal",
-    nameEn: "Personal Website",
-    description: "Portafolio personal desarrollado con Reflex y desplegado en Azure Container Apps.",
-    descriptionEn: "Personal portfolio developed with Reflex and deployed on Azure Container Apps.",
-    technologies: ["Python", "Reflex", "Chakra UI", "Railway", "Docker", "Azure"],
+    name: "Web Personal v6",
+    nameEn: "Personal Website v6",
+    description: "La iteración actual de mi portafolio. Reescrito desde cero en Next.js con TypeScript y Tailwind CSS, y construido con ayuda de IA.",
+    descriptionEn: "The current iteration of my portfolio. Rewritten from scratch in Next.js with TypeScript and Tailwind CSS, built with the help of AI.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Azure Static Web Apps"],
+    repositoryUrl: "https://github.com/juandaherrera/personal-web-v2",
+    websiteUrl: "https://www.juandaherrera.com",
+    vibecoded: true,
+  },
+  {
+    name: "Web Personal v5",
+    nameEn: "Personal Website v5",
+    description: "Versión anterior de mi portafolio, desarrollada en solitario con Python y Reflex, desplegada en Azure Container Apps.",
+    descriptionEn: "Previous version of my portfolio, built solo with Python and Reflex, deployed on Azure Container Apps.",
+    note: "El contenedor se apaga sin tráfico, puede tardar unos segundos en despertar 😅",
+    noteEn: "The container shuts down when idle, it may take a few seconds to wake up 😅",
+    technologies: ["Python", "Reflex", "Chakra UI", "Railway", "Docker", "Azure Container Apps"],
     repositoryUrl: "https://github.com/juandaherrera/personal_web",
+    websiteUrl: "https://personal-web.braveriver-b6fac172.eastus.azurecontainerapps.io/",
   },
   {
     name: "Finmail (Azure Function)",
