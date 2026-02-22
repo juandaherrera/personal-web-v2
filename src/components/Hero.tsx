@@ -5,6 +5,24 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { personalInfo, typewriterTitles } from "@/data/content";
+import { formatLocalDateTime, getCurrentHourInTimezone } from "@/utils/date";
+
+type StatusKey = "available" | "lunch" | "chilling" | "sleeping";
+
+const STATUS_CONFIG: Record<StatusKey, { en: string; es: string; dot: string }> = {
+  available: { en: "Available", es: "Disponible", dot: "bg-green-400 animate-pulse" },
+  lunch: { en: "Probably at lunch 🥗", es: "Probablemente almorzando 🥗", dot: "bg-yellow-400 animate-pulse" },
+  chilling: { en: "Chilling 🦦", es: "Descansando 🦦", dot: "bg-sky-400 animate-pulse" },
+  sleeping: { en: "Sleeping 😴", es: "Durmiendo 😴", dot: "bg-zinc-500 animate-pulse" },
+};
+
+function getStatusKey(hour: number): StatusKey {
+  if (hour >= 7 && hour < 12) return "available";
+  if (hour >= 12 && hour < 14) return "lunch";
+  if (hour >= 14 && hour < 19) return "available";
+  if (hour >= 19 && hour < 23) return "chilling";
+  return "sleeping";
+}
 
 function Typewriter({ words }: { words: string[] }) {
   const [index, setIndex] = useState(0);
@@ -68,6 +86,23 @@ export default function Hero() {
   const { isEn } = useLanguage();
   const words = isEn ? typewriterTitles.en : typewriterTitles.es;
 
+  const [statusKey, setStatusKey] = useState<StatusKey | null>(null);
+  const [localDateTime, setLocalDateTime] = useState<string | null>(null);
+
+  useEffect(() => {
+    const tz = personalInfo.timezone;
+    const locale = isEn ? "en-US" : "es-CO";
+    const update = () => {
+      setStatusKey(getStatusKey(getCurrentHourInTimezone(tz)));
+      setLocalDateTime(formatLocalDateTime(tz, locale));
+    };
+    update();
+    const id = setInterval(update, 60_000);
+    return () => clearInterval(id);
+  }, [isEn]);
+
+  const status = statusKey ? STATUS_CONFIG[statusKey] : STATUS_CONFIG.available;
+
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Background accent */}
@@ -110,6 +145,7 @@ export default function Hero() {
               <span className="font-figtree text-muted text-base">
                 {isEn ? "Currently at" : "Actualmente en"}
               </span>
+
               <a
                 href={personalInfo.currentCompanyUrl}
                 target="_blank"
@@ -191,9 +227,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+            className="order-1 lg:order-2 flex flex-col items-center lg:items-end"
           >
-            <div className="relative">
+            <div className="relative mb-10">
               {/* Decorative ring */}
               <div className="absolute inset-0 rounded-full border border-accent/20 scale-110" />
               <div className="absolute inset-0 rounded-full border border-accent/10 scale-125" />
@@ -219,12 +255,36 @@ export default function Hero() {
                 transition={{ delay: 0.8, duration: 0.5 }}
                 className="absolute -bottom-2 -right-4 bg-surface border border-border-dark rounded-xl px-3 py-2 flex items-center gap-2 shadow-xl"
               >
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-mono text-xs text-muted">
-                  {isEn ? "Available" : "Disponible"}
-                </span>
+                <span className={`w-2 h-2 rounded-full ${status.dot}`} />
+                <span className="font-mono text-xs text-muted">{isEn ? status.en : status.es}</span>
               </motion.div>
             </div>
+
+            {/* Local date & time — micro-info below the photo */}
+            {localDateTime && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.1, duration: 0.6 }}
+                className="mt-3 font-mono text-[10px] text-muted/40 flex items-center gap-1.5"
+              >
+                <svg
+                  aria-hidden="true"
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                {localDateTime}
+                <span className="text-muted/20">·</span>
+                <span>{isEn ? "my time" : "mi hora"}</span>
+              </motion.p>
+            )}
           </motion.div>
         </div>
 

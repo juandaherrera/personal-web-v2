@@ -33,4 +33,7 @@ az afd endpoint purge \
   --endpoint-name "$FRONTDOOR_ENDPOINT" \
   --content-paths '/*'
 
+echo "🗑️ Removing `out/` folder"
+rm -rf out
+
 echo "✅ Deploy completed."
