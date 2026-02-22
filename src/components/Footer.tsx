@@ -108,7 +108,7 @@ export default function Footer() {
           {/* Vibecoded credits */}
           <div className="flex flex-col items-center gap-2 mb-6">
             <span className="font-mono text-xs text-muted/60">
-              {isEn ? "vibecoded with" : "vibecodeado con"}
+              {isEn ? "this web was vibecoded with" : "esta web fue vibecodeada con"}
             </span>
             <div className="flex items-center justify-center gap-2 flex-wrap">
               {vibecodeCredits.map((credit) => (

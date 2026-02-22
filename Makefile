@@ -1,4 +1,4 @@
-.PHONY: install dev build start lint format check ci clean
+.PHONY: install dev build start lint format check ci clean deploy
 
 install:
 	npm install
@@ -26,3 +26,6 @@ ci:
 
 clean:
 	rm -rf .next
+
+deploy:
+	bash scripts/deploy.sh

@@ -67,6 +67,47 @@ This project uses [Biome](https://biomejs.dev/) as the single tool for linting a
 
 ---
 
+## ☁️ Deployment
+
+The site is deployed as a **static export** (`next export`) to **Azure Blob Storage**, served globally through **Azure Front Door** (CDN + custom domain + HTTPS).
+
+```mermaid
+flowchart LR
+    A[Local dev] -->|next build| B[/out — static files/]
+    B -->|az storage blob upload-batch| C[(Azure Blob Storage $web container)]
+    C -->|cache purge| D[Azure Front Door CDN]
+    D -->|juandaherrera.com| E((Users))
+```
+
+The deploy script (`scripts/deploy.sh`) handles the full flow: build → upload → cache purge.
+
+### Setup
+
+1. Create a `.env` file at the root with the required variables:
+
+```env
+STORAGE_ACCOUNT=your_storage_account_name
+RESOURCE_GROUP=your_resource_group
+FRONTDOOR_PROFILE=your_frontdoor_profile
+FRONTDOOR_ENDPOINT=your_frontdoor_endpoint
+```
+
+2. Give the script execution permissions (only needed once):
+
+```bash
+chmod +x scripts/deploy.sh
+```
+
+3. Run the deploy:
+
+```bash
+make deploy
+```
+
+> Requires the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/) installed and authenticated (`az login`).
+
+---
+
 ## 🤖 Vibecoded
 
 This site was built with the help of [Claude Code](https://claude.ai/code). Most of the implementation, from component architecture to animation tuning, was done through AI-assisted pair programming. It was a fun experiment in what modern vibe coding can produce.

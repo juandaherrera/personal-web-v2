@@ -286,7 +286,8 @@ export const projects: Project[] = [
       "TypeScript",
       "Tailwind CSS",
       "Framer Motion",
-      "Azure Static Web Apps",
+      "Azure Blob Storage",
+      "Azure Front Door"
     ],
     repositoryUrl: "https://github.com/juandaherrera/personal-web-v2",
     websiteUrl: "https://www.juandaherrera.com",

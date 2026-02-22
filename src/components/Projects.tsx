@@ -131,7 +131,7 @@ function FeaturedProjectCard({ project, isEn }: { project: (typeof projects)[0];
               <button
                 type="button"
                 onClick={handleCancel}
-                className="font-mono text-xs text-muted/50 hover:text-muted transition-colors"
+                className="font-mono text-xs text-muted/50 hover:text-muted transition-colors cursor-pointer"
               >
                 {isEn ? "cancel redirect" : "cancelar redirección"}
               </button>
