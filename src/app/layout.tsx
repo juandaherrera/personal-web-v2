@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Juan David Herrera | Web Personal",
     description:
       "Senior ML Backend Engineer con más de 5 años de experiencia en backend y data engineering.",
-    images: ["/img/web_preview.png"],
+    images: ["/img/web_preview.jpg"],
   },
 };
 
