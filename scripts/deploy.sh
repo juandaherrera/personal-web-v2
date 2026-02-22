@@ -32,7 +32,16 @@ az storage blob upload-batch \
   --destination '$web' \
   --source ./out \
   --overwrite \
-  --content-cache-control "public, max-age=120, s-maxage=120" \
+  --content-cache-control "public, max-age=120, s-maxage=120"
+
+echo "⚡ Setting long cache for immutable static assets..."
+az storage blob upload-batch \
+  --account-name "$STORAGE_ACCOUNT" \
+  --destination '$web' \
+  --source ./out \
+  --pattern "_next/static/*" \
+  --overwrite \
+  --content-cache-control "public, max-age=31536000, immutable"
 
 echo "🧹 Purging Front Door cache..."
 az afd endpoint purge \

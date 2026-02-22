@@ -1,13 +1,15 @@
+import dynamic from "next/dynamic";
 import About from "@/components/About";
-import Courses from "@/components/Courses";
-import Education from "@/components/Education";
-import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
 import TechStack from "@/components/TechStack";
-import Testimonials from "@/components/Testimonials";
+
+const Experience = dynamic(() => import("@/components/Experience"));
+const Projects = dynamic(() => import("@/components/Projects"));
+const Education = dynamic(() => import("@/components/Education"));
+const Courses = dynamic(() => import("@/components/Courses"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
 
 export default function Home() {
   return (

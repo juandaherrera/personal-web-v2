@@ -59,6 +59,17 @@ jobs:
             --content-cache-control "public, max-age=120, s-maxage=120" \
             --auth-mode login
 
+      - name: Set long cache for immutable static assets
+        run: |
+          az storage blob upload-batch \
+            --account-name "$STORAGE_ACCOUNT" \
+            --destination '$web' \
+            --source ./out \
+            --pattern "_next/static/*" \
+            --overwrite \
+            --content-cache-control "public, max-age=31536000, immutable" \
+            --auth-mode login
+
       - name: Purge Front Door cache
         run: |
           az afd endpoint purge \

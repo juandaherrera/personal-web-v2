@@ -9,7 +9,7 @@ export const personalInfo = {
   currentCompanyUrl: "https://snoonu.com/",
   currentCompanyLogo: "/icons/snoonu_full.svg",
   repoUrl: "https://github.com/juandaherrera/personal_web",
-  version: "v6.4.2",
+  version: "v6.4.3",
   location: "Palmira, Colombia 🇨🇴",
   timezone: "America/Bogota",
 };
