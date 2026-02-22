@@ -19,13 +19,20 @@ if [ ! -d "out" ]; then
   exit 1
 fi
 
+# TODO @juandaherrera: migrate to sync instead of delete + upload
+# pending to solve cache-control with sync command
+echo "🗑️  Deleting old blobs..."
+az storage blob delete-batch \
+  --account-name "$STORAGE_ACCOUNT" \
+  --source '$web' \
+
 echo "🚀 Uploading to Blob..."
 az storage blob upload-batch \
   --account-name "$STORAGE_ACCOUNT" \
   --destination '$web' \
   --source ./out \
   --overwrite \
-  --content-cache-control "public, max-age=120, s-maxage=120"
+  --content-cache-control "public, max-age=120, s-maxage=120" \
 
 echo "🧹 Purging Front Door cache..."
 az afd endpoint purge \
