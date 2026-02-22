@@ -24,7 +24,7 @@ az storage blob upload-batch \
   --account-name "$STORAGE_ACCOUNT" \
   --destination '$web' \
   --source ./out \
-  --overwrite
+  --overwrite \
 
 echo "🧹 Purging Front Door cache..."
 az afd endpoint purge \

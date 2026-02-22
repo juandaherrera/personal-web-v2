@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import TechStack from "@/components/TechStack";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -25,6 +26,8 @@ export default function Home() {
       <Education />
       <div className="border-t border-border-dark" />
       <Courses />
+      <div className="border-t border-border-dark" />
+      <Testimonials />
       <Footer />
     </main>
   );

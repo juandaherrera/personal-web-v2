@@ -6,43 +6,9 @@ import { useRef, useState } from "react";
 import { TechBadge } from "@/components/TechBadge";
 import { useLanguage } from "@/context/LanguageContext";
 import { courseSchools, totalCourses } from "@/data/content";
+import { formatMonthYear } from "@/utils/date";
 
 const INITIAL_VISIBLE = 5;
-
-const MONTHS_EN = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-const MONTHS_ES = [
-  "ene",
-  "feb",
-  "mar",
-  "abr",
-  "may",
-  "jun",
-  "jul",
-  "ago",
-  "sep",
-  "oct",
-  "nov",
-  "dic",
-];
-
-function formatCourseDate(dateStr: string, isEn: boolean): string {
-  const d = new Date(`${dateStr}T00:00:00`);
-  const month = isEn ? MONTHS_EN[d.getMonth()] : MONTHS_ES[d.getMonth()];
-  return `${month} ${d.getFullYear()}`;
-}
 
 export default function Courses() {
   const { isEn } = useLanguage();
@@ -178,7 +144,7 @@ export default function Courses() {
                                 {isEn ? course.nameEn : course.nameEs}
                               </p>
                               <span className="font-mono text-sm text-muted shrink-0">
-                                {formatCourseDate(course.issueDate, isEn)}
+                                {formatMonthYear(course.issueDate, isEn)}
                               </span>
                             </div>
                             {/* Row 2: badges (left) + credential (right) */}

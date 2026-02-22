@@ -12,13 +12,13 @@ const navItems = {
     { label: "Sobre mí", href: "#about" },
     { label: "Experiencia", href: "#experience" },
     { label: "Proyectos", href: "#projects" },
-    { label: "Contacto", href: "#footer" },
+    { label: "Recomendaciones", href: "#testimonials" },
   ],
   en: [
     { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#footer" },
+    { label: "Testimonials", href: "#testimonials" },
   ],
 };
 

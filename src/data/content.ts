@@ -9,7 +9,7 @@ export const personalInfo = {
   currentCompanyUrl: "https://snoonu.com/",
   currentCompanyLogo: "/icons/snoonu_full.svg",
   repoUrl: "https://github.com/juandaherrera/personal_web",
-  version: "v6.1.1",
+  version: "v6.2.0",
   location: "Palmira, Colombia 🇨🇴",
 };
 
@@ -287,7 +287,7 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "Framer Motion",
       "Azure Blob Storage",
-      "Azure Front Door"
+      "Azure Front Door",
     ],
     repositoryUrl: "https://github.com/juandaherrera/personal-web-v2",
     websiteUrl: "https://www.juandaherrera.com",
@@ -718,6 +718,142 @@ export const courseSchools: CourseSchool[] = [
 ];
 
 export const totalCourses = courseSchools.reduce((acc, s) => acc + s.courses.length, 0);
+
+export interface Testimonial {
+  name: string;
+  linkedin: string;
+  relation: string;
+  relationEn: string;
+  date: string;
+  originalLang: "es" | "en";
+  feedback: string;
+  feedbackTranslation: string;
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    name: "Maria Restrepo",
+    linkedin: "https://www.linkedin.com/in/mar%C3%ADa-restrepo-jimeno-12/",
+    relation: "Fue mi Product Manager en Rappi",
+    relationEn: "She was my Product Manager at Rappi",
+    date: "2024-12-18",
+    originalLang: "es",
+    feedback:
+      "Juan Da me encanta trabajar contigo, me siento muy apoyada en todo. Eres un crack, haces un trabajo impecable, eres muy rapido y sin errores. Me siento muy tranquila de tenerte en el equipo pues se que lo que haces lo haces bien. Me gusta mucho que entiendes el para que de las cosas y el impacto que tienen, lo que hace que propongas ideas y puntos de vista. Gracias por el apoyo en este camino!!",
+    feedbackTranslation:
+      "Juan Da, I love working with you, I feel really supported in everything. You’re a rockstar, you do impeccable work, you’re super fast and make no mistakes. I feel very at ease having you on the team because I know that whatever you do, you do it well. I really appreciate that you understand the why behind things and their impact, which leads you to propose ideas and share thoughtful perspectives. Thanks for all the support along this journey!!",
+  },
+  {
+    name: "JuanSe Agudelo",
+    linkedin: "https://www.linkedin.com/in/juans-agudelo/",
+    relation: "Trabajamos juntos en Rappi",
+    relationEn: "We worked together at Rappi",
+    date: "2024-12-12",
+    originalLang: "es",
+    feedback:
+      "Dandonos ejemplo, creo que haz traido mucho valor al innovar no solo en earnings, sino tambien haz introducido ideas comunes como el auto merging y auto tag de rappiflow support, que facilito el trabajo de todos. Esto no solo posiciona al equipo, sino que nos inspira a ser asi de curiosos como tu, continua desarrollando esa curiosidad de volver el trabajo mas dinamico y creativo para todos. <3",
+    feedbackTranslation:
+      "Leading by example, I think you’ve brought a lot of value, not only by innovating in Earnings, but also by introducing great ideas like auto-merging and auto-tagging from Rappiflow Support, which made everyone’s work easier. This not only positions the team strongly, but also inspires us to be as curious as you are. Keep nurturing that curiosity to make work more dynamic and creative for all of us. <3",
+  },
+  {
+    name: "Abraham Farfan",
+    linkedin: "https://www.linkedin.com/in/abraham-farfan-07b53092",
+    relation: "Trabajamos juntos en Rappi",
+    relationEn: "We worked together at Rappi",
+    date: "2025-04-08",
+    originalLang: "en",
+    feedback:
+      "Juan David is one of the most capable and well-rounded data professionals I've had the chance to work with. His ability to design scalable, automated solutions and to model complex operational challenges is truly outstanding.\n\nHe combines deep analytical thinking with strong execution. Whether building data pipelines, developing models, or structuring systems to support decision-making, Juan David consistently delivers high-impact, reliable solutions that drive measurable improvements.\n\nBeyond his technical excellence, what sets him apart is his structured thinking, attention to detail, and clear communication. He approaches problems with both rigor and creativity, always aiming for solutions that are not only technically sound but also aligned with broader business goals.",
+    feedbackTranslation:
+      "Juan David es uno de los profesionales de datos más completos y capaces con los que he tenido la oportunidad de trabajar. Su habilidad para diseñar soluciones escalables y automatizadas, y para modelar desafíos operativos complejos, es realmente impresionante.\n\nCombina un pensamiento analítico profundo con una ejecución muy sólida. Ya sea construyendo pipelines de datos, desarrollando modelos o estructurando sistemas para apoyar la toma de decisiones, Juan David entrega de forma constante soluciones confiables, de alto impacto y que generan mejoras medibles.\n\nMás allá de su excelencia técnica, lo que realmente lo diferencia es su pensamiento estructurado, su atención al detalle y su comunicación clara. Aborda los problemas con rigor y creatividad al mismo tiempo, siempre buscando soluciones que no solo sean técnicamente sólidas, sino que también estén alineadas con los objetivos del negocio.",
+  },
+  {
+    name: "RJ AcostAmado",
+    linkedin: "https://www.linkedin.com/in/rjacostamado/",
+    relation: "Fue mi profesor en Icesi",
+    relationEn: "Was my professor at Icesi",
+    date: "2021-04-13",
+    originalLang: "en",
+    feedback:
+      "Juan David was a student in the stochastic processes course I deliver every semester as part of the undergraduate program in the IE dept. at Universidad ICESI; about two years ago. It did not take too long for me to notice his eagerness in the use of stochastic models to study systems of interest for an IE. He was very rigorous and detail oriented during the course; and as far as I have seen, he has been in the rest of his studies as well. I believe that might have been driven by his curiosity about how all these tools can be actually implemented successfully in a company to generate value. It has been easy for me to sense that curiosity every time we talk.\n\nI have no doubt about his discipline and willingness to perform responsibly and I can foresee, not only a bright future for him; which I think must be a side effect of his discipline; but also him becoming a key team player in the organization that he joins to build his professional career.",
+    feedbackTranslation:
+      "Juan David fue estudiante en el curso de procesos estocásticos que dicto cada semestre como parte del programa de pregrado del departamento de Ingeniería Industrial en la Universidad ICESI, hace aproximadamente dos años. No pasó mucho tiempo antes de que notara su interés genuino por usar modelos estocásticos para estudiar sistemas relevantes para un ingeniero industrial. Durante el curso fue muy riguroso y detallista, y por lo que he podido ver, también lo ha sido en el resto de sus estudios. Creo que eso está muy impulsado por su curiosidad sobre cómo todas estas herramientas pueden implementarse de manera exitosa en una empresa para generar valor. Esa curiosidad siempre ha sido evidente cada vez que conversamos.\n\nNo tengo ninguna duda sobre su disciplina y su compromiso para asumir responsabilidades con seriedad. Puedo anticipar no solo un futuro muy prometedor para él, que sin duda será consecuencia de esa misma disciplina, sino también que se convertirá en una pieza clave dentro del equipo de la organización en la que decida construir su carrera profesional.",
+  },
+  {
+    name: "Andrés Parra",
+    linkedin: "https://www.linkedin.com/in/andresparrasharko/",
+    relation: "Fue mi jefe durante una investigación de mercado en Sharko",
+    relationEn: "Was my manager during a market research project at Sharko",
+    date: "2021-03-12",
+    originalLang: "es",
+    feedback:
+      "Juan es una persona integral, comprometida con los resultados esperados de su trabajo. Juan trabaja proactivamente en encontrar soluciones encaminadas a los objetivos propuestos. Es una persona investigadora y bastante confiable cuando se le asigna una labor. Además resaltó su carisma y seriedad al momento de asignar un reto profesional.",
+    feedbackTranslation:
+      "Juan is a well-rounded professional, fully committed to delivering the expected results in his work. He proactively looks for solutions aligned with the defined goals. He’s inquisitive and highly reliable when assigned a task. I also want to highlight his charisma and professionalism when taking on a new challenge.",
+  },
+  {
+    name: "Silvio Valencia Giraldo",
+    linkedin: "https://www.linkedin.com/in/silviovalenciag/",
+    relation: "Estudiamos juntos en Icesi",
+    relationEn: "We studied together at Icesi",
+    date: "2021-03-10",
+    originalLang: "es",
+    feedback:
+      "Compartí con Juan David en varios proyectos universitarios donde se destacó por tener los mejores resultados. Se caracteriza por su rápida capacidad de aprendizaje, en especial la de programas tecnológicos y adaptación a los diferentes enfoques de la ingeniería industrial, permitiéndole enfrentar diferentes retos apoyándose en sus capacidades.",
+    feedbackTranslation:
+      "I worked with Juan David on several university projects, where he consistently stood out for achieving top results. He’s known for his fast learning ability, especially when it comes to technical tools, and for adapting to different Industrial Engineering approaches, which allows him to take on diverse challenges by leveraging his strengths.",
+  },
+  {
+    name: "Jorge Alberto Quesada",
+    linkedin: "https://www.linkedin.com/in/quesadaj/",
+    relation: "Fue mi profesor en Icesi",
+    relationEn: "He was my professor at Icesi",
+    date: "2021-03-10",
+    originalLang: "es",
+    feedback:
+      "Juan David se caracteriza por ser una persona que aprende rápidamente, con gran facilidad para el análisis de situaciones problemáticas proponiendo soluciones muy bien estructuradas de manera lógica y ordenada. Sus interacciones se caracterizan por ser empáticas lo cual favorece el trabajo en equipo y la negociación de posturas para lograr consensos. Se caracteriza por su dedicación y compromiso para el logro de objetivos.",
+    feedbackTranslation:
+      "Juan David stands out for being a fast learner, with a strong ability to analyze complex situations and propose well-structured, logical, and organized solutions. His interactions are empathetic, which fosters teamwork and helps facilitate alignment and consensus. He is also known for his dedication and commitment to achieving goals.",
+  },
+  {
+    name: "Andres Felipe Osorio Muriel",
+    linkedin: "https://www.linkedin.com/in/andres-felipe-osorio-muriel-21b56524/",
+    relation:
+      "Fue mi profesor en Icesi y mi jefe durante las monitorías de Investigación de Operaciones",
+    relationEn:
+      "He was my professor at Icesi and my supervisor during the Operations Research teaching assistantships",
+    date: "2021-03-10",
+    originalLang: "es",
+    feedback:
+      "Tuve la oportunidad de trabajar con Juan David cuando me apoyó como monitor en el curso de investigación de operaciones por varios semestres. Durante este tiempo Juan David mostró alta responsabilidad con las tareas asignadas como también empatía y acompañamiento a estudiantes del curso.\n\nJuan David ha sido uno de los mejores estudiantes que he tenido en el curso de investigación de operaciones, su alta capacidad analítica y su interés en el aprendizaje lo hacen un muy buen candidato para cualquier posición.",
+    feedbackTranslation:
+      "I had the opportunity to work with Juan David when he supported me as a teaching assistant in the Operations Research course for several semesters. During that time, he consistently showed strong responsibility in the tasks assigned to him, as well as empathy and support toward the students in the course.\n\nJuan David has been one of the best students I’ve had in Operations Research. His strong analytical skills and genuine interest in learning make him an excellent candidate for any position.",
+  },
+  {
+    name: "Daniela Marquez Feijoo",
+    linkedin: "https://www.linkedin.com/in/daniela-marquez-feijoo-a121031b/",
+    relation: "Fue mi líder en Rappi",
+    relationEn: "She was my manager at Rappi",
+    date: "2023-12-07",
+    originalLang: "es",
+    feedback:
+      "Soy muy afortunada de compartir con una persona tan brillante y con tanta buena onda para cambiar el negocio. Reconozco en ti habilidades tecnicas pero sobretodo destaco Juanda tu capacidad para estructurar modelos con data, probar y aprender para ejecutar. Has logrado estructurar un proceso que era completamente manual, minimizando los errores, consiguiendo resultados y haciendonos la vida mas facil. Somos muy afortunados de tenerte. Te extrañamos en Colombia.",
+    feedbackTranslation:
+      "I feel very lucky to work alongside someone so brilliant and with such great energy to drive change in the business. I recognize your technical skills, but above all, Juanda, I want to highlight your ability to structure data-driven models, test, learn, and execute. You managed to turn a completely manual process into a structured one, minimizing errors, delivering results, and making life easier for all of us. We’re very fortunate to have you. We miss you in Colombia.",
+  },
+  {
+    name: "Yulieth Sofia Montes",
+    linkedin: "https://www.linkedin.com/in/yulieth-montes-araque-049516118/",
+    relation: "Trabajamos juntos en Rappi",
+    relationEn: "We worked together at Rappi",
+    date: "2023-12-23",
+    originalLang: "es",
+    feedback:
+      "Juan David, es un ejemplo para todo el team, sus logros su conocimiento y capacidad de romper paradigmas a su corta edad. Lo que más admiro de el es la humildad que tiene con su conocimiento, a pesar de su cargo es una persona sencilla y colaboradora. A nivel de funciones siempre esta apoyando y viendo de que forma nos puede 'hacer más sencillo' las funciones de los demás.",
+    feedbackTranslation:
+      "Juan David is an example for the whole team, his achievements, knowledge, and ability to break paradigms at such a young age are truly impressive. What I admire most about him is his humility despite all his expertise. Regardless of his role, he remains approachable and collaborative. In his day-to-day work, he’s always looking for ways to support others and make everyone’s tasks easier.",
+  },
+];
 
 export const vibecodeCredits = [
   {

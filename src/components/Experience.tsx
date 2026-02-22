@@ -6,42 +6,7 @@ import { useRef, useState } from "react";
 import { TechBadge } from "@/components/TechBadge";
 import { useLanguage } from "@/context/LanguageContext";
 import { experience } from "@/data/content";
-
-const MONTHS_EN = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-const MONTHS_ES = [
-  "ene",
-  "feb",
-  "mar",
-  "abr",
-  "may",
-  "jun",
-  "jul",
-  "ago",
-  "sep",
-  "oct",
-  "nov",
-  "dic",
-];
-
-function formatDate(dateStr: string | null, isEn: boolean): string {
-  if (!dateStr) return isEn ? "Present" : "Actualidad";
-  const d = new Date(`${dateStr}T00:00:00`);
-  const month = isEn ? MONTHS_EN[d.getMonth()] : MONTHS_ES[d.getMonth()];
-  return `${month} ${d.getFullYear()}`;
-}
+import { formatMonthYear } from "@/utils/date";
 
 function getDuration(startStr: string, endStr: string | null, isEn: boolean): string {
   const start = new Date(`${startStr}T00:00:00`);
@@ -121,7 +86,7 @@ export default function Experience() {
                       {company.name}
                     </h3>
                     <p className="font-mono text-sm text-muted">
-                      {formatDate(companyStart, isEn)} → {formatDate(companyEnd, isEn)}{" "}
+                      {formatMonthYear(companyStart, isEn)} → {formatMonthYear(companyEnd, isEn)}{" "}
                       <span className="text-border-2">·</span>{" "}
                       {getDuration(companyStart, companyEnd, isEn)}
                     </p>
@@ -154,7 +119,8 @@ export default function Experience() {
                               {isEn ? job.titleEn : job.title}
                             </p>
                             <p className="font-mono text-sm text-muted mt-0.5">
-                              {formatDate(job.startDate, isEn)} → {formatDate(job.endDate, isEn)}{" "}
+                              {formatMonthYear(job.startDate, isEn)} →{" "}
+                              {formatMonthYear(job.endDate, isEn)}{" "}
                               <span className="text-border-2">·</span>{" "}
                               {getDuration(job.startDate, job.endDate, isEn)}
                             </p>
