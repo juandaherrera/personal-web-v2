@@ -25,6 +25,7 @@ az storage blob upload-batch \
   --destination '$web' \
   --source ./out \
   --overwrite \
+  --content-cache-control "public, max-age=120, s-maxage=120"
 
 echo "🧹 Purging Front Door cache..."
 az afd endpoint purge \
