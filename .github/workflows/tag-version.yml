@@ -1,0 +1,43 @@
+name: Tag version on push to main
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/data/content.ts
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Check for version and tag
+        run: |
+          CURRENT=$(grep -oP '(?<=version: ")[^"]+' src/data/content.ts)
+
+          if [ -z "$CURRENT" ]; then
+            echo "Could not extract version — skipping."
+            exit 0
+          fi
+
+          echo "Current version: $CURRENT"
+
+          if git ls-remote --tags origin "$CURRENT" | grep -q "$CURRENT"; then
+            echo "Tag $CURRENT already exists — skipping."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "$CURRENT"
+          git push origin "$CURRENT"
+          echo "Tagged $CURRENT"
