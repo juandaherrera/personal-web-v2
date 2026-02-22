@@ -17,6 +17,7 @@ jobs:
       RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP }}
       FRONTDOOR_PROFILE: ${{ vars.FRONTDOOR_PROFILE }}
       FRONTDOOR_ENDPOINT: ${{ vars.FRONTDOOR_ENDPOINT }}
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
 
     steps:
       - name: Checkout repository

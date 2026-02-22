@@ -1,8 +1,8 @@
-# juandaherrera.com — v6
+# juandaherrera.com - v6
 
 My personal corner of the internet. A portfolio that showcases who I am, what I've built, and what I know. Rebuilt from scratch with a modern stack and a healthy dose of vibe coding.
 
-> **This is the sixth (and best) iteration of my personal site.** Previous versions go back years, most recently [v5](https://github.com/juandaherrera/personal_web) which was built with Python + [Reflex](https://reflex.dev/). This version is a full rewrite in Next.js — faster, smoother, and vibecoded with the help of [Claude Code](https://claude.ai/code).
+> **This is the sixth (and best) iteration of my personal site.** Previous versions go back years, most recently [v5](https://github.com/juandaherrera/personal_web) which was built with Python + [Reflex](https://reflex.dev/). This version is a full rewrite in Next.js - faster, smoother, and vibecoded with the help of [Claude Code](https://claude.ai/code).
 
 ---
 
@@ -26,12 +26,12 @@ Language switching (ES / EN) is supported across the whole site.
 
 ## 🛠️ Tech stack
 
-- **[Next.js 16](https://nextjs.org/)** + **[React 19](https://react.dev/)** — app router, server components
-- **[TypeScript](https://www.typescriptlang.org/)** — because types are non-negotiable
-- **[Tailwind CSS v4](https://tailwindcss.com/)** — utility-first styling
-- **[Framer Motion](https://www.framer-motion.com/)** — scroll animations and staggered reveals
-- **[react-fast-marquee](https://www.react-fast-marquee.com/)** — the scrolling tech stack strip
-- **[Simple Icons](https://simpleicons.org/)** CDN — icon sprites for every tech and tool
+- **[Next.js 16](https://nextjs.org/)** + **[React 19](https://react.dev/)** - app router, server components
+- **[TypeScript](https://www.typescriptlang.org/)** - because types are non-negotiable
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - utility-first styling
+- **[Framer Motion](https://www.framer-motion.com/)** - scroll animations and staggered reveals
+- **[react-fast-marquee](https://www.react-fast-marquee.com/)** - the scrolling tech stack strip
+- **[Simple Icons](https://simpleicons.org/)** CDN - icon sprites for every tech and tool
 
 ---
 
@@ -57,13 +57,13 @@ This project uses [Biome](https://biomejs.dev/) as the single tool for linting a
 | `make build` | Production build |
 | `make lint` | Lint and apply safe auto-fixes |
 | `make format` | Format all source files |
-| `make check` | Read-only validation — fails on any issue |
+| `make check` | Read-only validation - fails on any issue |
 | `make ci` | Same as `check`, intended for CI pipelines |
 | `make clean` | Remove the `.next` build cache |
 
 **Before committing**, run `make lint` to apply fixes, then `make check` to confirm the output is clean.
 
-**In CI**, only `make ci` runs — it uses `biome check` without `--write`, so it fails if any issue is present.
+**In CI**, only `make ci` runs - it uses `biome check` without `--write`, so it fails if any issue is present.
 
 ---
 
@@ -73,7 +73,7 @@ The site is deployed as a **static export** (`next export`) to **Azure Blob Stor
 
 ```mermaid
 flowchart LR
-    A[Local dev] -->|next build| B[/out — static files/]
+    A[Local dev] -->|next build| B[/out - static files/]
     B -->|az storage blob upload-batch| C[(Azure Blob Storage $web container)]
     C -->|cache purge| D[Azure Front Door CDN]
     D -->|juandaherrera.com| E((Users))
@@ -122,7 +122,7 @@ Commits follow the format `<emoji> <prefix>: <message>`.
 |---|---|
 | `feat` | New section, component, or visible functionality |
 | `fix` | Visual or behavioral bug |
-| `style` | Design tweaks — spacing, colors, typography — no logic changes |
+| `style` | Design tweaks - spacing, colors, typography - no logic changes |
 | `refactor` | Code restructure without behavior change (e.g. extract component, rename) |
 | `content` | Data changes: `content.ts`, copy, images |
 | `ci` | GitHub/Azure workflows, deploy config |

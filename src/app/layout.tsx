@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Figtree, JetBrains_Mono, Roboto_Condensed } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const robotoCondensed = Roboto_Condensed({
   variable: "--font-syne-var",
@@ -26,6 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.juandaherrera.com"),
   title: "Juan David Herrera | Web Personal",
   description: "Portafolio personal de Juan David Herrera — Senior ML Backend Engineer",
   openGraph: {
@@ -48,6 +52,22 @@ export default function RootLayout({
     >
       <body>
         <LanguageProvider>{children}</LanguageProvider>
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

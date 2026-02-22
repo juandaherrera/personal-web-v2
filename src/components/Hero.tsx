@@ -11,7 +11,11 @@ type StatusKey = "available" | "lunch" | "chilling" | "sleeping";
 
 const STATUS_CONFIG: Record<StatusKey, { en: string; es: string; dot: string }> = {
   available: { en: "Available", es: "Disponible", dot: "bg-green-400 animate-pulse" },
-  lunch: { en: "Probably at lunch 🥗", es: "Probablemente almorzando 🥗", dot: "bg-yellow-400 animate-pulse" },
+  lunch: {
+    en: "Probably at lunch 🥗",
+    es: "Probablemente almorzando 🥗",
+    dot: "bg-yellow-400 animate-pulse",
+  },
   chilling: { en: "Chilling 🦦", es: "Descansando 🦦", dot: "bg-sky-400 animate-pulse" },
   sleeping: { en: "Sleeping 😴", es: "Durmiendo 😴", dot: "bg-zinc-500 animate-pulse" },
 };
