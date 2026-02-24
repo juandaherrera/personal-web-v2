@@ -18,6 +18,7 @@ The site is organized into the following sections:
 | **Experience** | My professional journey, company by company |
 | **Projects** | Things I've built and shipped |
 | **Education & Certifications** | Degrees, certs, and courses |
+| **Testimonials** | Recommendations and feedback from people I've worked with |
 | **Footer** | Links, credits, and the vibecode disclosure |
 
 Language switching (ES / EN) is supported across the whole site.
@@ -90,6 +91,7 @@ STORAGE_ACCOUNT=your_storage_account_name
 RESOURCE_GROUP=your_resource_group
 FRONTDOOR_PROFILE=your_frontdoor_profile
 FRONTDOOR_ENDPOINT=your_frontdoor_endpoint
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 2. Give the script execution permissions (only needed once):
