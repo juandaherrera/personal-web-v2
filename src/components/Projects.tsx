@@ -31,6 +31,8 @@ function FeaturedProjectCard({ project, isEn }: { project: (typeof projects)[0];
   const [joked, setJoked] = useState(false);
   const [countdown, setCountdown] = useState(COUNTDOWN);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const cardRef = useRef(null);
+  const cardInView = useInView(cardRef, { once: true, margin: "-60px" });
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -64,108 +66,110 @@ function FeaturedProjectCard({ project, isEn }: { project: (typeof projects)[0];
 
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      animate={cardInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
       className="group relative flex flex-col md:flex-row bg-surface rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(255,107,107,0.07)] transition-all duration-300"
       style={{ borderWidth: 1, borderStyle: "solid", borderColor: `${project.gradientFrom}40` }}
     >
-      {/* Gradient panel */}
-      <div
-        className="w-full md:w-72 lg:w-80 min-h-48 md:min-h-0 shrink-0 flex items-center justify-center"
-        style={{
-          background: `linear-gradient(135deg, ${project.gradientFrom}, ${project.gradientTo})`,
-        }}
-      >
-        <span className="text-7xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
-          {project.emoji}
-        </span>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 p-6 md:p-8">
-        <div className="flex items-center justify-between gap-3 mb-3 md:flex-col md:items-start md:mb-5">
-          <h3 className="font-syne font-bold text-xl leading-none md:text-3xl md:leading-tight text-text-primary md:order-2">
-            {isEn ? project.nameEn : project.name}
-          </h3>
-          <div className="flex items-center gap-2 shrink-0 md:order-1">
-            <p
-              className="font-mono text-xs leading-none"
-              style={{ color: `${project.gradientFrom}99` }}
-            >
-              01
-            </p>
-            {project.vibecoded && (
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] px-2 py-0.5 rounded-full border border-accent/25 text-accent/70 bg-accent/5">
-                {/* biome-ignore lint/performance/noImgElement: Next.js Image wrapper breaks inline-flex layout at small sizes */}
-                <img
-                  src="https://cdn.simpleicons.org/anthropic/FF6B6B"
-                  alt="Claude"
-                  aria-hidden="true"
-                  className="w-2.5 h-2.5"
-                />
-                vibecoded
-              </span>
-            )}
-          </div>
-        </div>
-
-        <p className="font-figtree text-base text-muted leading-relaxed mb-6 max-w-lg">
-          {isEn ? project.descriptionEn : project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <TechBadge key={tech} label={tech} />
-          ))}
-        </div>
-      </div>
-
-      {/* Actions */}
-      <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-3 px-8 py-6 md:py-8 border-t md:border-t-0 md:border-l border-border-dark md:min-w-52">
-        {project.websiteUrl && (
-          <div className="flex flex-col items-end gap-1.5">
-            <a
-              href={project.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleVisitClick}
-              className={`inline-flex items-center gap-2 font-figtree font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-300 whitespace-nowrap ${
-                joked
-                  ? "bg-surface-2 border border-border-2 text-muted cursor-default"
-                  : "bg-accent text-white hover:bg-accent/85"
-              }`}
-            >
-              {joked
-                ? isEn
-                  ? `you're already here 👀 · ${countdown}s`
-                  : `ya estás aquí 👀 · ${countdown}s`
-                : isEn
-                  ? "Visit site"
-                  : "Ver sitio"}
-              {!joked && <ExternalLinkIcon />}
-            </a>
-            {joked && (
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="font-mono text-xs text-muted/50 hover:text-muted transition-colors cursor-pointer"
-              >
-                {isEn ? "cancel redirect" : "cancelar redirección"}
-              </button>
-            )}
-          </div>
-        )}
-        <a
-          href={project.repositoryUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 font-figtree font-semibold text-sm px-5 py-2.5 rounded-full border border-border-dark text-muted hover:border-accent hover:text-accent transition-all whitespace-nowrap"
+      <div key={String(isEn)} className="contents">
+        {/* Gradient panel */}
+        <div
+          className="w-full md:w-72 lg:w-80 min-h-48 md:min-h-0 shrink-0 flex items-center justify-center"
+          style={{
+            background: `linear-gradient(135deg, ${project.gradientFrom}, ${project.gradientTo})`,
+          }}
         >
-          <GithubIcon />
-          GitHub
-        </a>
+          <span className="text-7xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
+            {project.emoji}
+          </span>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 p-6 md:p-8">
+          <div className="flex items-center justify-between gap-3 mb-3 md:flex-col md:items-start md:mb-5">
+            <h3 className="font-syne font-bold text-xl leading-none md:text-3xl md:leading-tight text-text-primary md:order-2">
+              {isEn ? project.nameEn : project.name}
+            </h3>
+            <div className="flex items-center gap-2 shrink-0 md:order-1">
+              <p
+                className="font-mono text-xs leading-none"
+                style={{ color: `${project.gradientFrom}99` }}
+              >
+                01
+              </p>
+              {project.vibecoded && (
+                <span className="inline-flex items-center gap-1 font-mono text-[10px] px-2 py-0.5 rounded-full border border-accent/25 text-accent/70 bg-accent/5">
+                  {/* biome-ignore lint/performance/noImgElement: Next.js Image wrapper breaks inline-flex layout at small sizes */}
+                  <img
+                    src="https://cdn.simpleicons.org/anthropic/FF6B6B"
+                    alt="Claude"
+                    aria-hidden="true"
+                    className="w-2.5 h-2.5"
+                  />
+                  vibecoded
+                </span>
+              )}
+            </div>
+          </div>
+
+          <p className="font-figtree text-base text-muted leading-relaxed mb-6 max-w-lg">
+            {isEn ? project.descriptionEn : project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <TechBadge key={tech} label={tech} />
+            ))}
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-3 px-8 py-6 md:py-8 border-t md:border-t-0 md:border-l border-border-dark md:min-w-52">
+          {project.websiteUrl && (
+            <div className="flex flex-col items-end gap-1.5">
+              <a
+                href={project.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleVisitClick}
+                className={`inline-flex items-center gap-2 font-figtree font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-300 whitespace-nowrap ${
+                  joked
+                    ? "bg-surface-2 border border-border-2 text-muted cursor-default"
+                    : "bg-accent text-white hover:bg-accent/85"
+                }`}
+              >
+                {joked
+                  ? isEn
+                    ? `you're already here 👀 · ${countdown}s`
+                    : `ya estás aquí 👀 · ${countdown}s`
+                  : isEn
+                    ? "Visit site"
+                    : "Ver sitio"}
+                {!joked && <ExternalLinkIcon />}
+              </a>
+              {joked && (
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className="font-mono text-xs text-muted/50 hover:text-muted transition-colors cursor-pointer"
+                >
+                  {isEn ? "cancel redirect" : "cancelar redirección"}
+                </button>
+              )}
+            </div>
+          )}
+          <a
+            href={project.repositoryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-figtree font-semibold text-sm px-5 py-2.5 rounded-full border border-border-dark text-muted hover:border-accent hover:text-accent transition-all whitespace-nowrap"
+          >
+            <GithubIcon />
+            GitHub
+          </a>
+        </div>
       </div>
     </motion.div>
   );
@@ -180,11 +184,14 @@ function ProjectCard({
   index: number;
   isEn: boolean;
 }) {
+  const cardRef = useRef(null);
+  const cardInView = useInView(cardRef, { once: true, margin: "-60px" });
+
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      animate={cardInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative flex flex-col bg-surface border border-border-dark rounded-2xl overflow-hidden hover:border-border-2 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
     >
