@@ -68,29 +68,48 @@ function FeaturedProjectCard({ project, isEn }: { project: (typeof projects)[0];
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5 }}
-      className="group relative flex flex-col md:flex-row bg-surface border border-accent/25 hover:border-accent/45 rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(255,107,107,0.07)] transition-all duration-300"
+      className="group relative flex flex-col md:flex-row bg-surface rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(255,107,107,0.07)] transition-all duration-300"
+      style={{ borderWidth: 1, borderStyle: "solid", borderColor: `${project.gradientFrom}40` }}
     >
-      {/* Left: content */}
-      <div className="flex-1 p-8">
-        <div className="flex items-center gap-3 mb-5">
-          <p className="font-mono text-xs text-accent/60">01</p>
-          {project.vibecoded && (
-            <span className="inline-flex items-center gap-1 font-mono text-[10px] px-2 py-0.5 rounded-full border border-accent/25 text-accent/70 bg-accent/5">
-              {/* biome-ignore lint/performance/noImgElement: Next.js Image wrapper breaks inline-flex layout at small sizes */}
-              <img
-                src="https://cdn.simpleicons.org/anthropic/FF6B6B"
-                alt="Claude"
-                aria-hidden="true"
-                className="w-2.5 h-2.5"
-              />
-              vibecoded
-            </span>
-          )}
-        </div>
+      {/* Gradient panel */}
+      <div
+        className="w-full md:w-72 lg:w-80 min-h-48 md:min-h-0 shrink-0 flex items-center justify-center"
+        style={{
+          background: `linear-gradient(135deg, ${project.gradientFrom}, ${project.gradientTo})`,
+        }}
+      >
+        <span className="text-7xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
+          {project.emoji}
+        </span>
+      </div>
 
-        <h3 className="font-syne font-bold text-2xl md:text-3xl text-text-primary mb-3">
-          {isEn ? project.nameEn : project.name}
-        </h3>
+      {/* Content */}
+      <div className="flex-1 p-6 md:p-8">
+        <div className="flex items-center justify-between gap-3 mb-3 md:flex-col md:items-start md:mb-5">
+          <h3 className="font-syne font-bold text-xl leading-none md:text-3xl md:leading-tight text-text-primary md:order-2">
+            {isEn ? project.nameEn : project.name}
+          </h3>
+          <div className="flex items-center gap-2 shrink-0 md:order-1">
+            <p
+              className="font-mono text-xs leading-none"
+              style={{ color: `${project.gradientFrom}99` }}
+            >
+              01
+            </p>
+            {project.vibecoded && (
+              <span className="inline-flex items-center gap-1 font-mono text-[10px] px-2 py-0.5 rounded-full border border-accent/25 text-accent/70 bg-accent/5">
+                {/* biome-ignore lint/performance/noImgElement: Next.js Image wrapper breaks inline-flex layout at small sizes */}
+                <img
+                  src="https://cdn.simpleicons.org/anthropic/FF6B6B"
+                  alt="Claude"
+                  aria-hidden="true"
+                  className="w-2.5 h-2.5"
+                />
+                vibecoded
+              </span>
+            )}
+          </div>
+        </div>
 
         <p className="font-figtree text-base text-muted leading-relaxed mb-6 max-w-lg">
           {isEn ? project.descriptionEn : project.description}
@@ -103,7 +122,7 @@ function FeaturedProjectCard({ project, isEn }: { project: (typeof projects)[0];
         </div>
       </div>
 
-      {/* Right: actions */}
+      {/* Actions */}
       <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-3 px-8 py-6 md:py-8 border-t md:border-t-0 md:border-l border-border-dark md:min-w-52">
         {project.websiteUrl && (
           <div className="flex flex-col items-end gap-1.5">
@@ -169,33 +188,46 @@ function ProjectCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative flex flex-col bg-surface border border-border-dark rounded-2xl overflow-hidden hover:border-border-2 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
     >
-      <div className="flex-1 p-6">
-        <p className="font-mono text-xs text-accent/60 mb-3">
-          {String(index + 1).padStart(2, "0")}
-        </p>
+      {/* Gradient banner */}
+      <div
+        className="h-32 md:h-48 flex items-center justify-center"
+        style={{
+          background: `linear-gradient(135deg, ${project.gradientFrom}, ${project.gradientTo})`,
+        }}
+      >
+        <span className="text-5xl md:text-6xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
+          {project.emoji}
+        </span>
+      </div>
 
-        <h3 className="font-syne font-bold text-xl text-text-primary mb-3">
-          {isEn ? project.nameEn : project.name}
-        </h3>
+      <div className="flex-1 p-4 md:p-6">
+        <div className="flex items-center justify-between gap-2 mb-3 md:flex-col md:items-start">
+          <h3 className="font-syne font-bold text-lg leading-none md:text-xl md:leading-tight text-text-primary md:order-2">
+            {isEn ? project.nameEn : project.name}
+          </h3>
+          <p className="font-mono text-xs leading-none text-accent/60 shrink-0 md:order-1">
+            {String(index + 1).padStart(2, "0")}
+          </p>
+        </div>
 
-        <p className="font-figtree text-base text-muted leading-relaxed mb-6">
+        <p className="font-figtree text-sm md:text-base text-muted leading-relaxed mb-4 md:mb-6">
           {isEn ? project.descriptionEn : project.description}
         </p>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 md:gap-2">
           {project.technologies.map((tech) => (
             <TechBadge key={tech} label={tech} />
           ))}
         </div>
 
         {(project.note || project.noteEn) && (
-          <p className="font-mono text-xs text-muted/50 mt-4 italic">
+          <p className="hidden md:block font-mono text-xs text-muted/50 mt-4 italic">
             {isEn ? project.noteEn : project.note}
           </p>
         )}
       </div>
 
-      <div className="px-6 py-4 border-t border-border-dark flex items-center gap-3">
+      <div className="px-4 md:px-6 py-3 md:py-4 border-t border-border-dark flex items-center gap-3">
         <a
           href={project.repositoryUrl}
           target="_blank"

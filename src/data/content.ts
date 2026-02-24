@@ -9,7 +9,7 @@ export const personalInfo = {
   currentCompanyUrl: "https://snoonu.com/",
   currentCompanyLogo: "/icons/snoonu_full.svg",
   repoUrl: "https://github.com/juandaherrera/personal_web",
-  version: "v6.4.4",
+  version: "v6.5.0",
   location: "Palmira, Colombia 🇨🇴",
   timezone: "America/Bogota",
 };
@@ -272,6 +272,9 @@ export interface Project {
   repositoryUrl: string;
   websiteUrl?: string;
   vibecoded?: boolean;
+  emoji: string;
+  gradientFrom: string;
+  gradientTo: string;
 }
 
 export const projects: Project[] = [
@@ -293,6 +296,9 @@ export const projects: Project[] = [
     repositoryUrl: "https://github.com/juandaherrera/personal-web-v2",
     websiteUrl: "https://www.juandaherrera.com",
     vibecoded: true,
+    emoji: "🚀",
+    gradientFrom: "#FF6B6B",
+    gradientTo: "#FF9E5E",
   },
   {
     name: "Web Personal v5",
@@ -306,6 +312,9 @@ export const projects: Project[] = [
     technologies: ["Python", "Reflex", "Chakra UI", "Railway", "Docker", "Azure Container Apps"],
     repositoryUrl: "https://github.com/juandaherrera/personal_web",
     websiteUrl: "https://personal-web.braveriver-b6fac172.eastus.azurecontainerapps.io/",
+    emoji: "🐍",
+    gradientFrom: "#7C3AED",
+    gradientTo: "#A78BFA",
   },
   {
     name: "Finmail (Azure Function)",
@@ -316,6 +325,9 @@ export const projects: Project[] = [
       "Financial email processing system built with Azure Functions. Processes transactional emails, extracts relevant financial information, and uploads it to a Google Sheet.",
     technologies: ["Python", "UV", "Azure Functions", "Finances"],
     repositoryUrl: "https://github.com/juandaherrera/finmail",
+    emoji: "💰",
+    gradientFrom: "#059669",
+    gradientTo: "#34D399",
   },
   {
     name: "Prueba Técnica Data Quality Engineer",
@@ -324,6 +336,9 @@ export const projects: Project[] = [
     descriptionEn: "Solution to a Data Quality Engineer technical test.",
     technologies: ["Python", "Pandas", "Matplotlib"],
     repositoryUrl: "https://github.com/juandaherrera/prueba-dqe-r5",
+    emoji: "📊",
+    gradientFrom: "#D97706",
+    gradientTo: "#FBBF24",
   },
 ];
 
