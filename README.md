@@ -19,6 +19,7 @@ The site is organized into the following sections:
 | **Projects** | Things I've built and shipped |
 | **Education & Certifications** | Degrees, certs, and courses |
 | **Testimonials** | Recommendations and feedback from people I've worked with |
+| **Contact** | A form to send me a message directly |
 | **Footer** | Links, credits, and the vibecode disclosure |
 
 Language switching (ES / EN) is supported across the whole site.
@@ -70,43 +71,23 @@ This project uses [Biome](https://biomejs.dev/) as the single tool for linting a
 
 ## ☁️ Deployment
 
-The site is deployed as a **static export** (`next export`) to **Azure Blob Storage**, served globally through **Azure Front Door** (CDN + custom domain + HTTPS).
+The site is deployed on **[Vercel](https://vercel.com)**. Every push to `main` triggers an automatic deployment.
 
 ```mermaid
 flowchart LR
-    A[Local dev] -->|next build| B[/out - static files/]
-    B -->|az storage blob upload-batch| C[(Azure Blob Storage $web container)]
-    C -->|cache purge| D[Azure Front Door CDN]
-    D -->|juandaherrera.com| E((Users))
+    A[Local dev] -->|git push| B[GitHub main]
+    B -->|auto deploy| C[Vercel]
+    C -->|juandaherrera.com| D((Users))
 ```
 
-The deploy script (`scripts/deploy.sh`) handles the full flow: build → upload → cache purge.
+### Environment variables
 
-### Setup
-
-1. Create a `.env` file at the root with the required variables:
+Set these in the Vercel project settings (or a local `.env.local` for development):
 
 ```env
-STORAGE_ACCOUNT=your_storage_account_name
-RESOURCE_GROUP=your_resource_group
-FRONTDOOR_PROFILE=your_frontdoor_profile
-FRONTDOOR_ENDPOINT=your_frontdoor_endpoint
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_WEB3FORMS_KEY=your_web3forms_key
 ```
-
-2. Give the script execution permissions (only needed once):
-
-```bash
-chmod +x scripts/deploy.sh
-```
-
-3. Run the deploy:
-
-```bash
-make deploy
-```
-
-> Requires the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/) installed and authenticated (`az login`).
 
 ---
 
@@ -127,7 +108,7 @@ Commits follow the format `<emoji> <prefix>: <message>`.
 | `style` | Design tweaks - spacing, colors, typography - no logic changes |
 | `refactor` | Code restructure without behavior change (e.g. extract component, rename) |
 | `content` | Data changes: `content.ts`, copy, images |
-| `ci` | GitHub/Azure workflows, deploy config |
+| `ci` | GitHub workflows, Vercel config, deploy config |
 | `chore` | Dependencies, config files (`tailwind.config`, `tsconfig`, etc.) |
 | `docs` | `README.md`, `CLAUDE.md` |
 
