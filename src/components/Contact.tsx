@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { personalInfo } from "@/data/content";
 
 interface FormData {
   name: string;
@@ -55,6 +56,19 @@ export default function Contact() {
   const [touched, setTouched] = useState({ name: false, email: false, message: false });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [cvOpen, setCvOpen] = useState(false);
+  const cvRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!cvOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (cvRef.current && !cvRef.current.contains(e.target as Node)) {
+        setCvOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [cvOpen]);
 
   const handleChange = useCallback(
     (field: keyof FormData, value: string) => {
@@ -172,28 +186,76 @@ export default function Contact() {
                 : "¿Quieres enviarme una recomendación, feedback o simplemente saludar? Déjame un mensaje."}
             </p>
 
-            {/* Email link */}
-            <a
-              href="mailto:juandaherreparra@gmail.com"
-              className="inline-flex items-center gap-2 mt-8 font-mono text-sm text-muted hover:text-accent transition-colors duration-200 group"
-            >
-              <svg
-                aria-hidden="true"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-accent shrink-0"
+            {/* CV download */}
+            <div className="relative mt-8" ref={cvRef}>
+              <button
+                type="button"
+                onClick={() => setCvOpen((o) => !o)}
+                className="flex items-center justify-center gap-2 font-mono text-sm text-text-primary border border-border-2 rounded-lg w-full min-h-11 px-4 py-2.5 hover:border-muted/50 active:bg-surface-2 transition-colors duration-200 cursor-pointer sm:w-auto sm:justify-start sm:min-h-0"
               >
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              juandaherreparra@gmail.com
-            </a>
+                <svg
+                  aria-hidden="true"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-accent"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                {isEn ? "Download CV" : "Descargar CV"}
+                <svg
+                  aria-hidden="true"
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={`text-muted transition-transform duration-200 ${cvOpen ? "rotate-180" : ""}`}
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {cvOpen && (
+                  <motion.div
+                    key="cv-dropdown"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.15, ease: easing }}
+                    className="absolute top-full mt-1.5 left-0 bg-surface border border-border-dark rounded-lg overflow-hidden z-10 min-w-full"
+                  >
+                    <a
+                      href={personalInfo.cvEn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setCvOpen(false)}
+                      className="flex items-center justify-between gap-6 px-4 py-2.5 font-mono text-sm text-text-primary hover:bg-surface-2 hover:text-accent transition-colors duration-150 cursor-pointer"
+                    >
+                      <span>{isEn ? "English" : "Inglés"}</span>
+                      <span className="text-[10px] text-muted uppercase tracking-wider">EN</span>
+                    </a>
+                    <div className="flex items-center justify-between gap-6 px-4 py-2.5 font-mono text-sm text-muted/40 cursor-not-allowed border-t border-border-dark">
+                      <span>{isEn ? "Spanish" : "Español"}</span>
+                      <span className="text-[10px] uppercase tracking-wider">
+                        {isEn ? "soon" : "pronto"}
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
 
           {/* ── Right: form card ── */}
