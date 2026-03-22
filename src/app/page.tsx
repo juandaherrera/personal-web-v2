@@ -10,6 +10,7 @@ const Projects = dynamic(() => import("@/components/Projects"));
 const Education = dynamic(() => import("@/components/Education"));
 const Courses = dynamic(() => import("@/components/Courses"));
 const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const Contact = dynamic(() => import("@/components/Contact"));
 
 export default function Home() {
   return (
@@ -30,6 +31,8 @@ export default function Home() {
       <Courses />
       <div className="border-t border-border-dark" />
       <Testimonials />
+      <div className="border-t border-border-dark" />
+      <Contact />
       <Footer />
     </main>
   );
