@@ -1,0 +1,35 @@
+default_install_hook_types: [pre-commit]
+
+repos:
+  # ── Universal file hygiene ──────────────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-json
+      - id: check-yaml
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+
+  # ── Secret detection ────────────────────────────────────
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.3
+    hooks:
+      - id: gitleaks
+
+  # ── GitHub Actions linting ──────────────────────────────
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.7
+    hooks:
+      - id: actionlint
+
+  # ── Biome (lint + format + import sort) ─────────────────
+  - repo: https://github.com/biomejs/pre-commit
+    rev: "v2.4.4"
+    hooks:
+      - id: biome-check
+        additional_dependencies: ["@biomejs/biome@2.4.4"]

@@ -10,7 +10,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noConsole": "warn"
+      }
     }
   },
   "formatter": {
@@ -38,11 +41,6 @@
     }
   },
   "files": {
-    "includes": [
-      "**",
-      "!node_modules",
-      "!.next",
-      "!public"
-    ]
+    "includes": ["**", "!node_modules", "!.next", "!public"]
   }
 }

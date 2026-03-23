@@ -60,12 +60,33 @@ This project uses [Biome](https://biomejs.dev/) as the single tool for linting a
 | `make lint` | Lint and apply safe auto-fixes |
 | `make format` | Format all source files |
 | `make check` | Read-only validation - fails on any issue |
+| `make typecheck` | TypeScript type-check without emitting files |
 | `make ci` | Same as `check`, intended for CI pipelines |
 | `make clean` | Remove the `.next` build cache |
+| `make pre-commit` | Install git hooks and run them against all files |
 
 **Before committing**, run `make lint` to apply fixes, then `make check` to confirm the output is clean.
 
 **In CI**, only `make ci` runs - it uses `biome check` without `--write`, so it fails if any issue is present.
+
+### Pre-commit hooks
+
+The project uses [`pre-commit`](https://pre-commit.com/) to enforce quality gates on every commit. Once installed, hooks run automatically — no manual step needed.
+
+```bash
+# First-time setup (requires pre-commit installed globally)
+make pre-commit
+```
+
+| Hook | What it checks |
+|---|---|
+| `check-added-large-files` | Blocks files over 500KB |
+| `check-case-conflict` | Catches filename casing issues (macOS vs Linux) |
+| `check-merge-conflict` | Prevents committing unresolved conflict markers |
+| `check-json` / `check-yaml` | Validates config file syntax |
+| `trailing-whitespace` + `end-of-file-fixer` | File hygiene |
+| `gitleaks` | Detects hardcoded secrets and API keys |
+| `biome-check` | Lint, format, and import sorting in one pass |
 
 ---
 

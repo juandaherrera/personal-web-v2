@@ -1,4 +1,4 @@
-.PHONY: install dev build start lint format check ci clean
+.PHONY: install dev build start lint format check ci clean typecheck pre-commit
 
 install:
 	npm install
@@ -26,3 +26,10 @@ ci:
 
 clean:
 	rm -rf .next
+
+typecheck:
+	npm run typecheck
+
+pre-commit:
+	pre-commit install
+	pre-commit run --all-files
