@@ -74,7 +74,7 @@ const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
   },
 };
 const item = {
@@ -111,8 +111,8 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Background accent */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-150 h-150 bg-accent opacity-[0.04] rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-1/4 w-100 h-100 bg-accent-2 opacity-[0.03] rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 right-0 w-60 h-60 sm:w-150 sm:h-150 bg-accent opacity-[0.04] rounded-full blur-[60px] sm:blur-[120px]" />
+        <div className="absolute bottom-0 left-1/4 w-40 h-40 sm:w-100 sm:h-100 bg-accent-2 opacity-[0.03] rounded-full blur-[50px] sm:blur-[100px]" />
       </div>
 
       <div className="section-container py-24">

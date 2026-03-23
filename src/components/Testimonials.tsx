@@ -147,14 +147,12 @@ export default function Testimonials() {
           {view === "carousel" ? (
             <motion.div
               key="carousel"
-              layout="size"
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               exit={{ opacity: 0, y: -12 }}
               transition={{
                 duration: 0.5,
                 delay: 0.15,
-                layout: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
               }}
               className="relative"
               onMouseEnter={() => setHovered(true)}
@@ -199,11 +197,7 @@ export default function Testimonials() {
               </button>
 
               {/* Card */}
-              <motion.div
-                layout="size"
-                transition={{ layout: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
-                className="overflow-hidden border border-border-dark rounded-2xl bg-surface/50 min-h-110"
-              >
+              <div className="overflow-hidden border border-border-dark rounded-2xl bg-surface/50 min-h-110">
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={current}
@@ -303,7 +297,7 @@ export default function Testimonials() {
                     </div>
                   </motion.div>
                 </AnimatePresence>
-              </motion.div>
+              </div>
 
               {/* Dot indicators */}
               <div className="flex items-center justify-center gap-2 mt-6">
