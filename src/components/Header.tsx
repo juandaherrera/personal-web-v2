@@ -72,7 +72,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setLang(isEn ? "es" : "en")}
-            className="flex items-center gap-1.5 font-mono text-xs border border-border-dark rounded-full px-3 py-1.5 text-muted hover:border-accent hover:text-accent transition-all"
+            className="flex items-center gap-1.5 font-mono text-xs border border-border-dark rounded-full px-3 py-1.5 text-muted hover:border-accent hover:text-accent transition-all cursor-pointer"
             aria-label="Toggle language"
           >
             <span className={isEn ? "text-text-primary" : "text-muted"}>EN</span>

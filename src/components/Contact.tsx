@@ -17,6 +17,9 @@ interface FieldErrors {
   message?: string;
 }
 
+// null = not yet validated, false = was cleared after error, true = has error
+type ValidationState = Record<keyof FormData, boolean | null>;
+
 type FormStatus = "idle" | "loading" | "success" | "error";
 
 const WEB3FORMS_URL = "https://api.web3forms.com/submit";
@@ -52,12 +55,23 @@ export default function Contact() {
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   const [formData, setFormData] = useState<FormData>({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState<FieldErrors>({});
-  const [touched, setTouched] = useState({ name: false, email: false, message: false });
+  const [validation, setValidation] = useState<ValidationState>({
+    name: null,
+    email: null,
+    message: null,
+  });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [cvOpen, setCvOpen] = useState(false);
   const cvRef = useRef<HTMLDivElement>(null);
+
+  // Derived — always reflects current language without any effect needed
+  const errors: FieldErrors = {
+    name: validation.name === true ? validateField("name", formData.name, isEn) : undefined,
+    email: validation.email === true ? validateField("email", formData.email, isEn) : undefined,
+    message:
+      validation.message === true ? validateField("message", formData.message, isEn) : undefined,
+  };
 
   useEffect(() => {
     if (!cvOpen) return;
@@ -73,56 +87,38 @@ export default function Contact() {
   const handleChange = useCallback(
     (field: keyof FormData, value: string) => {
       setFormData((prev) => ({ ...prev, [field]: value }));
-      if (touched[field] && errors[field]) {
-        // If the field is cleared, remove the error — "required" only shows on submit
-        if (!value.trim()) {
-          setErrors((prev) => ({ ...prev, [field]: undefined }));
-        } else {
-          setErrors((prev) => ({ ...prev, [field]: validateField(field, value, isEn) }));
-        }
-      }
+      setValidation((prev) => {
+        if (prev[field] === null) return prev; // not yet validated, wait for blur/submit
+        if (!value.trim()) return { ...prev, [field]: false }; // cleared → hide error ("required" only on submit)
+        return { ...prev, [field]: validateField(field, value, isEn) !== undefined };
+      });
     },
-    [touched, errors, isEn]
+    [isEn]
   );
 
   const handleBlur = useCallback(
     (field: keyof FormData) => {
-      setTouched((prev) => ({ ...prev, [field]: true }));
       // Only validate on blur if the user actually typed something
       if (formData[field].trim()) {
-        setErrors((prev) => ({
+        setValidation((prev) => ({
           ...prev,
-          [field]: validateField(field, formData[field], isEn),
+          [field]: validateField(field, formData[field], isEn) !== undefined,
         }));
       }
     },
     [formData, isEn]
   );
 
-  // Re-translate visible errors when language switches
-  useEffect(() => {
-    setErrors((prev) => {
-      const updated: FieldErrors = {};
-      for (const field of ["name", "email", "message"] as const) {
-        if (prev[field]) {
-          updated[field] = validateField(field, formData[field], isEn);
-        }
-      }
-      return { ...prev, ...updated };
-    });
-  }, [isEn, formData]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newErrors: FieldErrors = {};
-    for (const field of ["name", "email", "message"] as const) {
-      const err = validateField(field, formData[field], isEn);
-      if (err) newErrors[field] = err;
-    }
-    setErrors(newErrors);
-    setTouched({ name: true, email: true, message: true });
-    if (Object.keys(newErrors).length > 0) return;
+    const newValidation: ValidationState = {
+      name: validateField("name", formData.name, isEn) !== undefined,
+      email: validateField("email", formData.email, isEn) !== undefined,
+      message: validateField("message", formData.message, isEn) !== undefined,
+    };
+    setValidation(newValidation);
+    if (Object.values(newValidation).some(Boolean)) return;
 
     setStatus("loading");
     try {
