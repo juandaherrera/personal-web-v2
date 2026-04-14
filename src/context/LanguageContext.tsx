@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 type Language = "es" | "en";
 
@@ -17,8 +17,24 @@ const LanguageContext = createContext<LanguageContextType>({
   isEn: false,
 });
 
+function detectLanguage(): Language {
+  // 1. Respect explicit user preference stored from a previous session
+  const stored = localStorage.getItem("lang");
+  if (stored === "es" || stored === "en") return stored;
+
+  // 2. Infer from browser locale: es-* → Spanish (covers all Hispanic countries + Spain),
+  //    everything else → English (including pt-BR for Brazil)
+  return navigator.language.startsWith("es") ? "es" : "en";
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Language>("es");
+  const [lang, setLangState] = useState<Language>(() => detectLanguage());
+
+  const setLang = useCallback((newLang: Language) => {
+    setLangState(newLang);
+    localStorage.setItem("lang", newLang);
+  }, []);
+
   return (
     <LanguageContext.Provider value={{ lang, setLang, isEn: lang === "en" }}>
       {children}
