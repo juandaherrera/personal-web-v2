@@ -118,3 +118,4 @@ types/generated/
 playwright-report/
 .playwright-mcp/
 html-report/
+skills-lock.json

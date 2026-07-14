@@ -26,6 +26,10 @@ Examples:
 
 Arbitrary values are still fine when no scale equivalent exists (e.g. `blur-[120px]`, `opacity-[0.04]`, `text-[10px]`).
 
+## SEO
+
+If a new page/route is added to the site, check whether `src/app/sitemap.ts` needs a new `<url>` entry and whether `src/app/robots.ts` needs updated rules (e.g. disallowing a private/non-public route).
+
 ## Code quality
 
 After making any code changes, always run:
