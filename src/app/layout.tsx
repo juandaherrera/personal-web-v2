@@ -111,8 +111,7 @@ export default function RootLayout({
       className={`${robotoCondensed.variable} ${figtree.variable} ${jetbrains.variable}`}
     >
       <body>
-        <Script
-          id="json-ld"
+        <script
           type="application/ld+json"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: static build-time JSON-LD, no user input
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
