@@ -271,7 +271,7 @@ export default function Projects() {
   return (
     <section id="projects" className="relative section-py-lg overflow-hidden">
       <div className="section-number absolute -top-4 right-0 select-none pointer-events-none">
-        04
+        05
       </div>
 
       {/* Background glow */}

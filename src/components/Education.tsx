@@ -14,7 +14,7 @@ export default function Education() {
   return (
     <section className="relative section-py-lg overflow-hidden" ref={ref}>
       <div className="section-number absolute -top-4 left-0 select-none pointer-events-none">
-        05
+        06
       </div>
 
       <div className="section-container">

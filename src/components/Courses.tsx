@@ -32,7 +32,7 @@ export default function Courses() {
   return (
     <section className="relative section-py-lg overflow-hidden" ref={ref}>
       <div className="section-number absolute -top-4 right-0 select-none pointer-events-none">
-        06
+        07
       </div>
 
       <div className="section-container">

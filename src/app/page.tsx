@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import TechStack from "@/components/TechStack";
 
 const Experience = dynamic(() => import("@/components/Experience"));
+const Press = dynamic(() => import("@/components/Press"));
 const Projects = dynamic(() => import("@/components/Projects"));
 const Education = dynamic(() => import("@/components/Education"));
 const Courses = dynamic(() => import("@/components/Courses"));
@@ -23,6 +24,8 @@ export default function Home() {
       <TechStack />
       <div className="border-t border-border-dark" />
       <Experience />
+      <div className="border-t border-border-dark" />
+      <Press />
       <div className="border-t border-border-dark" />
       <Projects />
       <div className="border-t border-border-dark" />

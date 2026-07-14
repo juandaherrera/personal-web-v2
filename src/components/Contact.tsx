@@ -159,7 +159,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative section-py-lg overflow-hidden" ref={sectionRef}>
       <div className="section-number absolute -top-4 left-0 select-none pointer-events-none">
-        08
+        09
       </div>
 
       <div className="section-container">

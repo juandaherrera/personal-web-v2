@@ -87,7 +87,7 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="relative section-py-lg overflow-hidden" ref={sectionRef}>
       <div className="section-number absolute -top-4 right-0 select-none pointer-events-none">
-        07
+        08
       </div>
 
       <div className="section-container">

@@ -9,7 +9,7 @@ export const personalInfo = {
   currentCompanyUrl: "https://snoonu.com/",
   currentCompanyLogo: "/icons/snoonu_full.svg",
   repoUrl: "https://github.com/juandaherrera/personal_web",
-  version: "v6.10.0",
+  version: "v6.11.0",
   location: "Palmira, Colombia 🇨🇴",
   timezone: "America/Bogota",
   cvEn: "https://drive.google.com/uc?export=download&id=139Mb4GYMiYkedjwCdaCp767GbybgNFh7",
@@ -260,6 +260,38 @@ export const experience: Company[] = [
         technologies: ["Excel", "AMPL", "Python"],
       },
     ],
+  },
+];
+
+export interface PressMention {
+  outlet: string;
+  outletLogo: string;
+  outletUrl: string;
+  title: string;
+  url: string;
+  coverImage?: string;
+  description: string;
+  descriptionEn: string;
+  stats: string[];
+  statsEn: string[];
+  year: string;
+}
+
+export const pressMentions: PressMention[] = [
+  {
+    outlet: "Datadog",
+    outletLogo: "/icons/datadog.svg",
+    outletUrl: "https://www.datadoghq.com/",
+    title: "Snoonu scales AI-powered delivery with Datadog Agent Observability and Custom Metrics",
+    url: "https://www.datadoghq.com/case-studies/snoonu/",
+    coverImage: "/img/press-datadog-snoonu.jpg",
+    description:
+      "Snoonu fue destacado en un caso de estudio de Datadog sobre observabilidad de agentes de IA en producción. Fui una de las voces del equipo de ML citadas en el artículo.",
+    descriptionEn:
+      "Snoonu was featured in a Datadog case study on production AI agent observability. I was one of the ML team's voices quoted in the piece.",
+    stats: ["~70% debugging más rápido", "−68% latencia ML"],
+    statsEn: ["~70% faster debugging", "−68% ML latency"],
+    year: "2026",
   },
 ];
 
