@@ -146,7 +146,7 @@ export default function Experience() {
                             <button
                               type="button"
                               onClick={() => setExpanded(isOpen ? null : key)}
-                              className={`w-full flex items-center justify-between px-6 py-4 text-left transition-colors border-l-2 ${
+                              className={`w-full flex items-center justify-between px-6 py-4 text-left cursor-pointer transition-colors border-l-2 ${
                                 isOpen
                                   ? "bg-surface-2 border-l-accent/50"
                                   : "hover:bg-surface-2 border-l-transparent"

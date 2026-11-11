@@ -82,7 +82,7 @@ export default function Courses() {
                 <button
                   type="button"
                   onClick={() => setExpanded(isOpen ? null : school.name)}
-                  className={`w-full flex items-center gap-4 px-6 py-5 text-left transition-colors ${
+                  className={`w-full flex items-center gap-4 px-6 py-5 text-left cursor-pointer transition-colors ${
                     isOpen ? "bg-surface-2" : "hover:bg-surface-2"
                   }`}
                 >
@@ -183,7 +183,7 @@ export default function Courses() {
                           <button
                             type="button"
                             onClick={() => toggleShowAll(school.name)}
-                            className="w-full flex items-center justify-center gap-2 py-3.5 font-mono text-sm text-muted hover:text-text-primary hover:bg-surface-2 transition-all duration-200 border-t border-border-dark"
+                            className="w-full flex items-center justify-center gap-2 py-3.5 font-mono text-sm text-muted cursor-pointer hover:text-text-primary hover:bg-surface-2 transition-all duration-200 border-t border-border-dark"
                           >
                             {isShowingAll ? (
                               <>
