@@ -9,7 +9,7 @@ export const personalInfo = {
   currentCompanyUrl: "https://snoonu.com/",
   currentCompanyLogo: "/icons/snoonu_full.svg",
   repoUrl: "https://github.com/juandaherrera/personal_web",
-  version: "v6.14.0",
+  version: "v6.14.1",
   location: "Palmira, Colombia 🇨🇴",
   timezone: "America/Bogota",
   cvEn: "https://drive.google.com/uc?export=download&id=139Mb4GYMiYkedjwCdaCp767GbybgNFh7",
@@ -103,15 +103,13 @@ export const experience: Company[] = [
         descriptionEn:
           "Leading the design and build of Smart Catalog, the platform that unifies the AI services behind Snoonu's product catalog. Also technical owner of production ML and LLM services (ETAs, Customer 360 and GenAI) and go-to technical reference for the DS&AI team.",
         achievements: [
-          "Lideré el diseño y la construcción de Smart Catalog, que unifica 4 servicios de IA del catálogo de productos (moderación, enriquecimiento de contenido, categorización y extracción de atributos) en una sola plataforma, para que los equipos cliente se integren una vez en lugar de cuatro.",
-          "Definí los estándares técnicos y la estrategia de costos de la plataforma: evita reprocesar productos sin cambios, monitoreo de punta a punta y costo de IA medido por funcionalidad.",
+          "Lideré el diseño y la construcción de Smart Catalog, una plataforma que unifica 5 pasos de IA del catálogo de productos (moderación, enriquecimiento de contenido, categorización, extracción de atributos y traducción) en un solo flujo. Funciona como un framework interno: el equipo desarrolla en paralelo enfocado solo en la lógica de negocio, sumar nuevos pasos es sencillo y los clientes se integran una sola vez.",
           "Reduje ~90% la latencia de la plataforma Customer 360 con optimizaciones de pipelines en Redis y caché en memoria, por iniciativa propia.",
           "Diseñé y llevé a producción desde cero un servicio LLM (FastAPI, Celery, AWS Bedrock) que genera recomendaciones e insights para comercios en 12 escenarios, en inglés y árabe.",
           "Construí el bot de Slack que asigna revisores de PRs de forma automática y equitativa, y lidero sesiones de mentoría y buenas prácticas de ingeniería asistida por IA en el equipo.",
         ],
         achievementsEn: [
-          "Led the design and build of Smart Catalog, unifying 4 AI services for the product catalog (moderation, content enhancement, categorization and attribute extraction) into a single platform, so client teams integrate once instead of four times.",
-          "Set the platform's technical standards and cost strategy: no reprocessing of unchanged products, end-to-end observability, and AI cost tracked per capability.",
+          "Led the design and build of Smart Catalog, a platform that unifies 5 product catalog AI steps (moderation, content enhancement, categorization, attribute extraction and translation) into a single flow. It works as an internal framework: the team builds in parallel focused only on business logic, new steps are easy to add, and clients integrate once.",
           "Cut latency of the Customer 360 platform by ~90% through self-initiated Redis pipeline and in-memory caching optimizations.",
           "Designed and shipped from scratch an LLM service (FastAPI, Celery, AWS Bedrock) that generates merchant recommendations and insights across 12 scenarios, in English and Arabic.",
           "Built the Slack bot that assigns PR reviewers automatically and fairly, and run mentoring sessions on engineering best practices and AI-assisted development for the team.",
