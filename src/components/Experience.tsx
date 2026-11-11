@@ -90,7 +90,7 @@ export default function Experience() {
                     initial={{ scale: 0 }}
                     animate={inView ? { scale: 1 } : {}}
                     transition={{ duration: 0.3, delay: 0.25 + ci * 0.15, ease: EASE }}
-                    className={`absolute left-0 md:left-1.5 top-6 z-10 w-10 h-10 md:w-11 md:h-11 rounded-full bg-surface-2 border-2 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-border-2 ${
+                    className={`absolute left-0 md:left-1.5 top-6 z-10 w-10 h-10 md:w-11 md:h-11 rounded-full bg-surface-2 border-2 flex items-center justify-center overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-border-2 ${
                       isCurrent
                         ? "border-accent/40 shadow-[0_0_16px_rgba(255,107,107,0.15)]"
                         : "border-border-dark"

@@ -40,7 +40,7 @@ function PressCard({
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay }}
-      className="max-w-xl rounded-2xl border border-border-dark bg-surface/50 overflow-hidden hover:border-border-2 hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
+      className="max-w-xl rounded-2xl border border-border-dark bg-surface/50 overflow-hidden hover:border-border-2 hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-[border-color,box-shadow] duration-300"
     >
       {showCover && (
         <div className="relative w-full aspect-1200/630 bg-surface-2">
