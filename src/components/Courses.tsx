@@ -76,7 +76,7 @@ export default function Courses() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="border border-border-dark rounded-2xl overflow-hidden bg-surface/50 hover:border-border-2 hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
+                className="border border-border-dark rounded-2xl overflow-hidden bg-surface/50 hover:border-border-2 hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-[border-color,box-shadow] duration-300"
               >
                 {/* Platform header */}
                 <button

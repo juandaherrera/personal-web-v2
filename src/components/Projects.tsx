@@ -70,7 +70,7 @@ function FeaturedProjectCard({ project, isEn }: { project: (typeof projects)[0];
       initial={{ opacity: 0, y: 24 }}
       animate={cardInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="group relative flex flex-col md:flex-row bg-surface rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(255,107,107,0.07)] transition-all duration-300"
+      className="group relative flex flex-col md:flex-row bg-surface rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(255,107,107,0.07)] transition-shadow duration-300"
       style={{ borderWidth: 1, borderStyle: "solid", borderColor: `${project.gradientFrom}40` }}
     >
       <div key={String(isEn)} className="contents">
@@ -193,7 +193,7 @@ function ProjectCard({
       initial={{ opacity: 0, y: 24 }}
       animate={cardInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative flex flex-col bg-surface border border-border-dark rounded-2xl overflow-hidden hover:border-border-2 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300"
+      className="group relative flex flex-col bg-surface border border-border-dark rounded-2xl overflow-hidden hover:border-border-2 hover:scale-[1.02] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-[border-color,box-shadow,scale] duration-300"
     >
       {/* Gradient banner */}
       <div
