@@ -311,6 +311,40 @@ export const pressMentions: PressMention[] = [
   },
 ];
 
+export interface PressEvent {
+  organizer: string;
+  organizerLogo: string;
+  organizerUrl: string;
+  url: string;
+  title: string;
+  topic: string;
+  coverImage?: string;
+  location: string;
+  date: string;
+  dateEn: string;
+  description: string;
+  descriptionEn: string;
+}
+
+export const pressEvents: PressEvent[] = [
+  {
+    organizer: "Datadog",
+    organizerLogo: "/icons/datadog.svg",
+    organizerUrl: "https://www.datadoghq.com/",
+    url: "https://www.linkedin.com/posts/ai-at-scale-looks-great-on-paper-running-ugcPost-7507370103605211137-xyve/",
+    title: "Datadog x Mannai · Lunch in Qatar",
+    topic: "From Signal to Experience",
+    coverImage: "/img/press-datadog-doha.jpg",
+    location: "Fairmont Doha, Lusail City, Qatar",
+    date: "21 sep 2026",
+    dateEn: "Sep 21, 2026",
+    description:
+      "Datadog invitó a Ana Maria Jaime, mi líder en Snoonu, y a mí a compartir el caso de estudio de Snoonu en su evento en Doha, Qatar.",
+    descriptionEn:
+      "Datadog invited Ana Maria Jaime, my lead at Snoonu, and me to share the Snoonu case study at its event in Doha, Qatar.",
+  },
+];
+
 export interface Project {
   name: string;
   nameEn: string;
