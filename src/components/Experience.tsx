@@ -140,6 +140,7 @@ export default function Experience() {
                       {company.jobs.map((job, ji) => {
                         const key = `${company.name}-${ji}`;
                         const isOpen = expanded === key;
+                        const achievements = isEn ? job.achievementsEn : job.achievements;
                         return (
                           <div key={key}>
                             <button
@@ -190,14 +191,31 @@ export default function Experience() {
                                       {isEn ? job.descriptionEn : job.description}
                                     </p>
 
-                                    {(isEn ? job.achievementsEn : job.achievements) && (
+                                    {achievements && (
                                       <div className="bg-accent/5 border border-accent/15 rounded-xl p-4">
                                         <p className="font-mono text-xs text-accent uppercase tracking-widest mb-2">
                                           {isEn ? "Highlights" : "Logros"}
                                         </p>
-                                        <p className="font-figtree text-base text-text-primary/80 leading-relaxed">
-                                          {isEn ? job.achievementsEn : job.achievements}
-                                        </p>
+                                        {Array.isArray(achievements) ? (
+                                          <ul className="space-y-2">
+                                            {achievements.map((item) => (
+                                              <li
+                                                key={item}
+                                                className="flex gap-3 font-figtree text-base text-text-primary/80 leading-relaxed"
+                                              >
+                                                <span
+                                                  aria-hidden="true"
+                                                  className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent"
+                                                />
+                                                <span>{item}</span>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        ) : (
+                                          <p className="font-figtree text-base text-text-primary/80 leading-relaxed">
+                                            {achievements}
+                                          </p>
+                                        )}
                                       </div>
                                     )}
 
